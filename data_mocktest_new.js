@@ -182,6 +182,61 @@ dataMocktestNew[9] = [
     ])
 ];
 
+/* ============================ ĐỀ SỐ 1 (THEO ĐỀ MẪU) ============================
+   Phần II lấy nguyên 4 câu Đúng/Sai của đề mẫu (có biểu đồ ở câu 1 và câu 2):
+     Câu 1: Tây Nam Á (biểu đồ dân số, GDP/người)   - Địa lí 11
+     Câu 2: Tự nhiên Miền Tây Bắc và Bắc Trung Bộ    - Địa lí 12
+     Câu 3: Nội thương                                - Địa lí 12
+     Câu 4: Đồng bằng sông Cửu Long (lúa)             - Địa lí 12
+   (Bốn câu "Đề 2" của mẫu: EU, phân hoá Đông–Tây, Du lịch, cây ăn quả ĐBSCL
+    vẫn nằm trong các chủ đề luyện tập và có thể dùng cho đề số 2.)
+================================================================================= */
+const cloneQ = (q) => JSON.parse(JSON.stringify(q));
+const sampleTF = (typeof dataExtra !== 'undefined') ? {
+    tayNamA: dataExtra.khoi11[3].exercises.tf[0],
+    tuNhien: dataExtra.khoi12[3].exercises.tf[0],
+    noiThuong: dataExtra.khoi12[4].exercises.tf[0],
+    lua: dataExtra.khoi12[5].exercises.tf[0]
+} : null;
+
+dataMocktestNew[1] = [
+    // ---------- PHẦN I: 24 câu trắc nghiệm nhiều lựa chọn ----------
+    // Nhận biết
+    mq("Khu vực Tây Nam Á nổi tiếng thế giới về tài nguyên nào sau đây?", ["Than đá.", "Dầu mỏ và khí tự nhiên.", "Quặng sắt.", "Gỗ và lâm sản."], 1),
+    mq("Đồng tiền chung của phần lớn các nước thành viên Liên minh châu Âu (EU) là", ["Đô la Mỹ.", "Bảng Anh.", "Ơ-rô.", "Phrăng Thuỵ Sĩ."], 2),
+    mq("Dãy núi nào sau đây nằm ở khu vực Bắc Trung Bộ nước ta?", ["Hoàng Liên Sơn.", "Trường Sơn Bắc.", "Con Voi.", "Ngân Sơn."], 1),
+    mq("Hai trung tâm nội thương lớn nhất nước ta hiện nay là", ["Hải Phòng và Đà Nẵng.", "Hà Nội và Thành phố Hồ Chí Minh.", "Cần Thơ và Huế.", "Biên Hoà và Vũng Tàu."], 1),
+    mq("Vùng nào sau đây là vựa lúa lớn nhất cả nước?", ["Đồng bằng sông Hồng.", "Đồng bằng sông Cửu Long.", "Bắc Trung Bộ.", "Duyên hải Nam Trung Bộ."], 1),
+    mq("Quốc gia nào sau đây thuộc khu vực Tây Nam Á?", ["Cô-oét.", "Lào.", "Ấn Độ.", "Thái Lan."], 0),
+
+    // Thông hiểu
+    mq("Phần lớn lãnh thổ Tây Nam Á có nhiều hoang mạc, sông ngòi thưa thớt chủ yếu do nguyên nhân nào sau đây?", ["Khí hậu khô hạn do nằm trong đới nóng và chịu ảnh hưởng của khối khí lục địa.", "Địa hình thấp, bằng phẳng.", "Nằm sát cực Bắc.", "Có lượng mưa rất lớn quanh năm."], 0),
+    mq("Nguyên nhân chủ yếu thúc đẩy thương mại điện tử ở nước ta phát triển nhanh là", ["Sự phát triển của công nghệ thông tin và internet.", "Số lượng chợ truyền thống tăng nhanh.", "Dân số nông thôn tăng mạnh.", "Giá hàng hoá giảm liên tục."], 0),
+    mq("Điều kiện nào sau đây thuận lợi nhất cho sản xuất lúa ở Đồng bằng sông Cửu Long?", ["Đất phù sa rộng lớn, địa hình bằng phẳng, nguồn nước dồi dào.", "Địa hình đồi núi thấp xen đồng bằng.", "Khí hậu có mùa đông lạnh.", "Đất feralit chiếm diện tích lớn."], 0),
+    mq("Sự phân hoá thiên nhiên theo độ cao ở nước ta tạo nên các đai cao nào sau đây?", ["Chỉ có một đai nhiệt đới gió mùa.", "Đai nhiệt đới gió mùa, đai cận nhiệt đới gió mùa trên núi và đai ôn đới gió mùa trên núi.", "Chỉ có đai cận nhiệt đới và đai ôn đới.", "Đai xích đạo và đai cận cực."], 1),
+    mq("Cơ cấu cây ăn quả của Đồng bằng sông Cửu Long đa dạng chủ yếu do nguyên nhân nào sau đây?", ["Khí hậu cận xích đạo, đất phù sa màu mỡ và nguồn nước phong phú.", "Địa hình núi cao, khí hậu lạnh.", "Đất đai nghèo dinh dưỡng.", "Lượng mưa rất thấp."], 0),
+    mq("Du lịch nước ta thu hút nhiều khách quốc tế chủ yếu nhờ yếu tố nào sau đây?", ["Tài nguyên du lịch đa dạng, phong phú và đặc sắc.", "Có chi phí du lịch cao nhất khu vực.", "Không có sự cạnh tranh từ các nước khác.", "Chỉ có tài nguyên du lịch nhân văn."], 0),
+
+    // Vận dụng
+    mq("Giải pháp chủ yếu để nâng cao chất lượng sản phẩm du lịch nước ta là", ["Giảm đầu tư vào cơ sở vật chất.", "Đa dạng hoá sản phẩm, nâng cao chất lượng dịch vụ và nguồn nhân lực du lịch.", "Hạn chế quảng bá hình ảnh du lịch.", "Chỉ tập trung vào một loại hình du lịch."], 1),
+    mq("Việc chuyển một phần đất trồng lúa kém hiệu quả sang trồng cây ăn quả ở Đồng bằng sông Cửu Long chủ yếu nhằm mục đích nào sau đây?", ["Tăng giá trị sản xuất và thích ứng với biến đổi khí hậu.", "Giảm hoàn toàn sản xuất nông nghiệp.", "Mở rộng đất ở đô thị.", "Giảm dân số nông thôn."], 0),
+    mq("Phát triển nội thương gắn với chuyển đổi số mang lại tác dụng chủ yếu nào sau đây?", ["Thu hẹp thị trường tiêu thụ.", "Mở rộng thị trường, giảm chi phí và nâng cao trải nghiệm người tiêu dùng.", "Làm giảm vai trò của vận tải.", "Hạn chế sự cạnh tranh lành mạnh."], 1),
+    mq("Để thu hẹp chênh lệch về hoạt động nội thương giữa các vùng, giải pháp quan trọng nhất là", ["Tập trung toàn bộ đầu tư vào các đô thị lớn.", "Đầu tư hạ tầng thương mại, giao thông và nâng cao mức sống dân cư các vùng khó khăn.", "Hạn chế phát triển thương mại điện tử.", "Giảm số lượng siêu thị."], 1),
+    mq("Việc đa dạng hoá nền kinh tế là yêu cầu cấp thiết đối với các quốc gia Tây Nam Á vì", ["dầu mỏ là nguồn tài nguyên hữu hạn và giá dầu thường biến động.", "khu vực không có tài nguyên thiên nhiên.", "dân số khu vực quá ít.", "các nước không tham gia thương mại quốc tế."], 0),
+    mq("Hướng phát triển nông nghiệp phù hợp ở vùng đồi núi Tây Bắc nhằm bảo vệ môi trường là", ["Đốt nương làm rẫy trên sườn dốc.", "Trồng cây phù hợp độ dốc, bảo vệ rừng và chống xói mòn đất.", "Mở rộng canh tác lúa nước trên đỉnh núi.", "Chặt rừng để mở rộng đồng cỏ."], 1),
+
+    // Vận dụng cao
+    mq("Liên minh châu Âu (EU) được đánh giá là mô hình liên kết khu vực thành công chủ yếu vì", ["các nước thành viên hoàn toàn độc lập về kinh tế.", "có thị trường chung, đồng tiền chung, thể chế chặt chẽ và chính sách chung nhiều lĩnh vực.", "chỉ hợp tác về quân sự.", "không có quy định chung nào."], 1),
+    mq("Tỉ lệ dân thành thị ở Tây Ban Nha và Pháp cao hơn Ba Lan chủ yếu do nguyên nhân nào sau đây?", ["Khác nhau về trình độ phát triển kinh tế và quá trình đô thị hoá.", "Diện tích lãnh thổ nhỏ hơn.", "Không có dân cư nông thôn.", "Chịu ảnh hưởng của khí hậu lạnh hơn."], 0),
+    mq("Gió Tây khô nóng hoạt động ở Bắc Trung Bộ gây ra hậu quả nào đối với sản xuất nông nghiệp?", ["Làm tăng độ ẩm đất.", "Gây hạn hán, khô nóng, ảnh hưởng đến sinh trưởng của cây trồng.", "Làm giảm nhiệt độ mùa hạ.", "Gây mưa lớn kéo dài."], 1),
+    mq("Việc thúc đẩy nền nông nghiệp xanh ở nước ta chủ yếu nhằm mục đích nào sau đây?", ["Tăng nhanh việc sử dụng phân bón hoá học.", "Nâng cao chất lượng nông sản, giảm tác động môi trường và phát triển bền vững.", "Mở rộng diện tích đất bằng cách phá rừng.", "Giảm xuất khẩu nông sản."], 1),
+    mq("Khi giá dầu thế giới giảm mạnh, nền kinh tế Cô-oét chịu ảnh hưởng chủ yếu như thế nào?", ["Thu ngân sách và xuất khẩu giảm, nền kinh tế kém ổn định.", "Thu ngân sách tăng nhanh.", "Không bị ảnh hưởng vì không xuất khẩu dầu.", "Dân số tăng nhanh."], 0),
+    mq("Hiệp định EVFTA giữa Việt Nam và EU tác động tích cực chủ yếu nào sau đây đến kinh tế nước ta?", ["Làm giảm quan hệ thương mại với các đối tác khác.", "Mở rộng thị trường xuất khẩu sang EU và thu hút đầu tư, công nghệ.", "Chấm dứt nhập khẩu hàng hoá.", "Hạn chế phát triển công nghiệp chế biến."], 1),
+
+    // ---------- PHẦN II: 4 câu Đúng/Sai (theo đề mẫu) ----------
+    ...(sampleTF ? [cloneQ(sampleTF.tayNamA), cloneQ(sampleTF.tuNhien), cloneQ(sampleTF.noiThuong), cloneQ(sampleTF.lua)] : [])
+];
+
 /* ---------- Xáo trộn vị trí đáp án (cố định, không đổi mỗi lần tải) ----------
    Bỏ qua các câu có lựa chọn chứa chữ số (số liệu/thứ tự tự nhiên). */
 (function shuffleFixed() {
