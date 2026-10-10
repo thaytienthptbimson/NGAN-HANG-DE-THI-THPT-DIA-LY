@@ -1,108 +1,250 @@
 /* =========================================================================
-   DATABASE ĐỊA LÍ (Cấu trúc đề thi Tốt nghiệp THPT 2026)
-   Cấp độ nhận thức: Nhận biết -> Thông hiểu -> Vận dụng
+   APP.JS - LOGIC CHÍNH (gộp dữ liệu, sidebar, làm bài, chấm điểm, đồng hồ)
+   Yêu cầu nạp trước: data_khoi10.js, data_khoi11.js, data_khoi12.js,
+                      data_extra.js, data_mocktest.js
 ========================================================================= */
 
+/* ---------- 1. GỘP DỮ LIỆU TỪ CÁC FILE ---------- */
+const safe = (v) => (typeof v !== 'undefined' ? v : {});
+
 const appDatabase = {
-    khoi11: {},
-    khoi12: {},
+    khoi10: { ...safe(typeof dataKhoi10 !== 'undefined' ? dataKhoi10 : undefined) },
+    khoi11: { ...safe(typeof dataKhoi11 !== 'undefined' ? dataKhoi11 : undefined) },
+    khoi12: { ...safe(typeof dataKhoi12 !== 'undefined' ? dataKhoi12 : undefined) },
     mocktest: {}
 };
 
-// ================= DỮ LIỆU LỚP 11 =================
-appDatabase.khoi11[1] = {
-    title: "Chủ đề: Địa lí Khu vực và Quốc gia (Tây Nam Á & EU)",
-    exercises: {
-        tf: [
-            // Đề 1 - Biểu đồ Tây Nam Á
-            { type: 'tf', text: "Dựa vào biểu đồ Dân số và GDP của một số quốc gia Tây Nam Á năm 2023 (I-rắc, I-xra-en, A-rập Xê-út, Cô-oét)[cite: 187]:", options: [
-                { text: "a) (Nhận biết) Năm 2023, dân số và GDP của một số quốc gia Tây Nam Á có sự chênh lệch[cite: 187].", answer: true },
-                { text: "b) (Nhận biết) Năm 2023, Cô-oét có GDP/người cao gấp 2 lần GDP/người của A-rập Xê-út[cite: 187].", answer: false }, // Thực tế chỉ gấp khoảng 1.28 lần (37.204 USD so với 28.932 USD)[cite: 187].
-                { text: "c) (Thông hiểu) Năm 2023, I-xra-en có GDP/người cao nhất, I-rắc có GDP/người thấp nhất[cite: 187].", answer: true },
-                { text: "d) (Vận dụng) Nguyên nhân chênh lệch GDP/người của một số quốc gia Tây Nam Á chủ yếu do sự bất ổn định về chính trị và biến động của giá dầu mỏ[cite: 187].", answer: true }
-            ]},
-            // Đề 2 - Biểu đồ Liên minh châu Âu (EU)
-            { type: 'tf', text: "Dựa vào biểu đồ Số dân nông thôn và số dân thành thị của một số quốc gia EU năm 2024 (Ba Lan, I-ta-li-a, Tây Ban Nha, Pháp)[cite: 187]:", options: [
-                { text: "a) (Nhận biết) Năm 2024, tỉ lệ dân nông thôn của I-ta-li-a cao hơn của Pháp 10,2%[cite: 187].", answer: false }, // Thực tế cao hơn khoảng 9,1% (30,3% so với 21,2%)[cite: 187].
-                { text: "b) (Nhận biết) Năm 2024, Tây Ban Nha có tỉ lệ dân thành thị lớn nhất, Ba Lan có tỉ lệ dân thành thị nhỏ nhất[cite: 187].", answer: true }, // TBN 80,3%; Ba Lan 60,1%[cite: 187].
-                { text: "c) (Thông hiểu) Năm 2024, số dân nông thôn của một số quốc gia EU có sự chênh lệch[cite: 187].", answer: true },
-                { text: "d) (Vận dụng) Tỉ lệ dân thành thị của một số quốc gia EU có sự chênh lệch chủ yếu do khác nhau về số lượng đô thị, quy mô nền kinh tế và lịch sử chuyển cư[cite: 187].", answer: true }
-            ]}
-        ]
-    }
-};
+if (typeof dataExtra !== 'undefined') {
+    ['khoi11', 'khoi12'].forEach(k => {
+        Object.keys(dataExtra[k] || {}).forEach(id => {
+            if (appDatabase[k][id]) console.warn(`[Trùng chỉ số] ${k}[${id}] đã tồn tại, bỏ qua dữ liệu bổ sung.`);
+            else appDatabase[k][id] = dataExtra[k][id];
+        });
+    });
+}
 
-// ================= DỮ LIỆU LỚP 12 =================
-appDatabase.khoi12[1] = {
-    title: "Chủ đề: Địa lí Tự nhiên Việt Nam",
-    exercises: {
-        tf: [
-            // Đề 1 - Miền Tây Bắc, Bắc Trung Bộ và Nam Trung Bộ, Nam Bộ
-            { type: 'tf', text: "Cho thông tin về đặc điểm tự nhiên của Miền Tây Bắc và Bắc Trung Bộ[cite: 187]:", options: [
-                { text: "a) (Nhận biết) Miền Tây Bắc và Bắc Trung Bộ có địa hình đa dạng[cite: 187].", answer: true },
-                { text: "b) (Nhận biết) Sự phân hoá đa dạng của thiên nhiên trong miền tạo thuận lợi chủ yếu để phát triển sản xuất quanh năm, thâm canh, tăng vụ, hình thành các vùng chuyên canh quy mô lớn[cite: 187].", answer: false }, // Đây là thuận lợi đặc trưng của vùng đồng bằng, không phải vùng đồi núi[cite: 187].
-                { text: "c) (Thông hiểu) Gió Tây khô nóng hoạt động mạnh ở Bắc Trung Bộ vào nửa đầu mùa hạ do Tín phong bán cầu Nam kết hợp với dãy Trường Sơn Bắc[cite: 187].", answer: false }, // Do gió mùa Tây Nam bị biến tính khi vượt dãy Trường Sơn[cite: 187].
-                { text: "d) (Vận dụng) Sự xuất hiện của thành phần loài sinh vật ôn đới trong miền chủ yếu do tác động của hướng địa hình, gió đông bắc và vị trí xa chí tuyến[cite: 187].", answer: false } // Chủ yếu do đai cao địa hình dãy Hoàng Liên Sơn[cite: 187].
-            ]},
-            // Đề 2 - Sự phân hóa Đông - Tây
-            { type: 'tf', text: "Cho thông tin về sự phân hóa đa dạng theo Đông - Tây của thiên nhiên nước ta[cite: 187]:", options: [
-                { text: "a) (Nhận biết) Vùng đồi núi phân bố chủ yếu ở phía tây và tây bắc của nước ta[cite: 187].", answer: true },
-                { text: "b) (Nhận biết) Sự khác biệt về khí hậu giữa vùng núi Đông Bắc với Tây Bắc chủ yếu do tác động của hướng địa hình kết hợp với dải hội tụ nhiệt đới và gió đông nam[cite: 187].", answer: false }, // Chủ yếu do tác động của hướng dãy Hoàng Liên Sơn chắn gió mùa Đông Bắc[cite: 187].
-                { text: "c) (Thông hiểu) Vùng đồng bằng ven biển nước ta có địa hình thấp, khá bằng phẳng do thường xuyên chịu tác động trực tiếp từ biển và vùng đồi núi liền kề[cite: 187].", answer: false }, // Đồng bằng ven biển miền Trung hẹp ngang và bị chia cắt do núi đâm sát biển[cite: 187].
-                { text: "d) (Vận dụng) Sự phân hóa của khí hậu theo Đông – Tây tạo thuận lợi chủ yếu để nước ta đổi mới cơ cấu cây trồng, nâng cao chất lượng nông sản đặc sản và phát triển nền nông nghiệp xanh[cite: 187].", answer: true }
-            ]}
-        ]
+// Đề thi thử: lấy từ data_mocktest.js, bỏ đề rỗng và đề trùng nội dung với đề trước
+(function buildMocktest() {
+    const seen = new Set();
+    const merged = { ...(typeof dataMocktest !== 'undefined' ? dataMocktest : {}) };
+    if (typeof dataExtra !== 'undefined') {
+        Object.keys(dataExtra.mocktest || {}).forEach(id => {
+            if (!merged[id] || merged[id].length === 0) merged[id] = dataExtra.mocktest[id];
+        });
     }
-};
+    Object.keys(merged).sort((a, b) => a - b).forEach(id => {
+        const arr = merged[id];
+        if (!Array.isArray(arr) || arr.length === 0) return;
+        const sig = JSON.stringify(arr);
+        if (seen.has(sig)) { console.warn(`[Đề trùng] Đề ${id} giống hệt đề trước, đã ẩn.`); return; }
+        seen.add(sig);
+        appDatabase.mocktest[id] = arr;
+    });
+})();
 
-appDatabase.khoi12[2] = {
-    title: "Chủ đề: Địa lí Các ngành Kinh tế",
-    exercises: {
-        tf: [
-            // Đề 1 - Nội thương và Ngoại thương
-            { type: 'tf', text: "Về hoạt động nội thương và sự phân hóa giữa các vùng ở nước ta hiện nay[cite: 187]:", options: [
-                { text: "a) (Nhận biết) Đông Nam Bộ và Đồng bằng sông Hồng là hai vùng có hoạt động nội thương phát triển hàng đầu cả nước[cite: 187].", answer: true },
-                { text: "b) (Nhận biết) Mạng lưới siêu thị, trung tâm thương mại là hình thức bán lẻ hàng hoá ngày càng phát triển trên thị trường trong nước[cite: 187].", answer: true },
-                { text: "c) (Thông hiểu) Sức mua của người dân tăng, thị hiếu tiêu dùng thay đổi là nguyên nhân chủ yếu thúc đẩy thương mại điện tử phát triển ở nước ta[cite: 187].", answer: false }, // Nguyên nhân chủ yếu là sự phát triển của công nghệ thông tin và internet[cite: 187].
-                { text: "d) (Vận dụng) Sự phân hoá hoạt động nội thương ở nước ta chủ yếu do sự khác nhau về mạng lưới dân cư và chất lượng lao động giữa các vùng[cite: 187].", answer: false } // Chủ yếu do trình độ phát triển kinh tế và mức sống dân cư[cite: 187].
-            ]},
-            // Đề 2 - Ngành Du lịch
-            { type: 'tf', text: "Về thực trạng và định hướng phát triển của ngành du lịch nước ta[cite: 187]:", options: [
-                { text: "a) (Nhận biết) Giải pháp chủ yếu để nâng cao chất lượng sản phẩm du lịch là phát triển thương hiệu du lịch quốc gia, ứng dụng công nghệ số trong quảng bá và hoàn thiện hệ thống cơ sở dữ liệu du lịch[cite: 187].", answer: false }, // Đây là các biện pháp quảng bá và quản lý, không tác động trực tiếp vào cốt lõi nâng cao chất lượng sản phẩm du lịch[cite: 187].
-                { text: "b) (Nhận biết) Ngành du lịch nước ta phát triển nhanh, đóng góp tích cực vào tăng trưởng kinh tế[cite: 187].", answer: true },
-                { text: "c) (Thông hiểu) Ngành du lịch nước ta thu hút được nhiều khách du lịch quốc tế chủ yếu do có cơ sở hạ tầng hiện đại, nguồn nhân lực chất lượng cao và áp dụng rộng rãi công nghệ trong thanh toán dịch vụ[cite: 187].", answer: false }, // Sức hút chủ yếu nhờ tài nguyên du lịch đa dạng, phong phú và đặc sắc[cite: 187].
-                { text: "d) (Vận dụng) Du lịch nước ta đang thúc đẩy ứng dụng công nghệ số để hỗ trợ và gia tăng trải nghiệm cho du khách[cite: 187].", answer: true }
-            ]}
-        ]
+/* ---------- 2. TRẠNG THÁI ---------- */
+const MOCK_SECONDS = 50 * 60;
+let state = { section: null, key: null, questions: [], submitted: false };
+let timerId = null;
+let secondsLeft = MOCK_SECONDS;
+let secondsElapsed = 0;
+
+const $ = (id) => document.getElementById(id);
+const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+
+/* ---------- 3. TAB + SIDEBAR ---------- */
+const TAB_ACTIVE = 'px-5 py-2 bg-gray-50 text-emerald-800 font-bold rounded-md shadow-sm text-sm transition-colors';
+const TAB_IDLE = 'px-5 py-2 bg-white/20 hover:bg-white/90 hover:text-emerald-800 font-semibold rounded-md text-sm transition-colors';
+
+function selectSection(section) {
+    stopTimer();
+    ['khoi10', 'khoi11', 'khoi12', 'mocktest'].forEach(s => {
+        const el = $('tab-' + s);
+        if (el) el.className = (s === section) ? TAB_ACTIVE : TAB_IDLE;
+    });
+    state = { section, key: null, questions: [], submitted: false };
+    showScreen('welcome');
+    renderSidebar(section);
+}
+
+function renderSidebar(section) {
+    const box = $('sidebar-container');
+    const titles = { khoi10: 'Địa lí 10', khoi11: 'Địa lí 11', khoi12: 'Địa lí 12', mocktest: 'Đề thi thử' };
+    $('sidebar-title').textContent = titles[section] || 'Danh mục';
+    const data = appDatabase[section] || {};
+    const ids = Object.keys(data).sort((a, b) => a - b);
+    if (ids.length === 0) {
+        box.innerHTML = '<p class="p-4 text-sm text-gray-500">Chưa có dữ liệu.</p>';
+        return;
     }
-};
+    box.innerHTML = ids.map(id => {
+        let label, sub;
+        if (section === 'mocktest') {
+            const qs = data[id];
+            const m = qs.filter(q => q.type === 'mcq').length, t = qs.filter(q => q.type === 'tf').length;
+            label = `Đề thi thử số ${id}`;
+            sub = `${m} câu trắc nghiệm • ${t} câu Đúng/Sai • 50 phút`;
+        } else {
+            const ex = data[id].exercises || {};
+            label = data[id].title || `Chủ đề ${id}`;
+            sub = `${(ex.mcq || []).length} câu trắc nghiệm • ${(ex.tf || []).length} câu Đúng/Sai`;
+        }
+        return `<button data-id="${id}" onclick="loadTest('${section}','${id}')"
+            class="side-item w-full text-left p-3 mb-2 bg-white border border-gray-200 rounded-xl hover:border-emerald-300 hover:bg-emerald-50 transition">
+            <div class="font-semibold text-sm text-emerald-900">${esc(label)}</div>
+            <div class="text-xs text-gray-500 mt-1">${sub}</div></button>`;
+    }).join('');
+}
 
-appDatabase.khoi12[3] = {
-    title: "Chủ đề: Địa lí Các vùng Kinh tế",
-    exercises: {
-        tf: [
-            // Đề 1 - Đồng bằng sông Cửu Long (Lúa / Thủy sản)
-            { type: 'tf', text: "Về tình hình sản xuất và ứng phó với biến đổi khí hậu tại Đồng bằng sông Cửu Long[cite: 187]:", options: [
-                { text: "a) (Nhận biết) Đồng bằng sông Cửu Long là vùng có diện tích và sản lượng lúa lớn nhất nước ta[cite: 187].", answer: true },
-                { text: "b) (Nhận biết) Khó khăn lớn nhất trong sản xuất lúa ở Đồng bằng sông Cửu Long là nhiệt độ trung bình năm tăng[cite: 187].", answer: false }, // Khó khăn lớn nhất là xâm nhập mặn và thiếu nước ngọt mùa khô do biến đổi khí hậu[cite: 187].
-                { text: "c) (Vận dụng) Vùng có sản lượng lúa lớn, chủ yếu do khí hậu cận xích đạo, nguồn nước phong phú, nhiều giống lúa chất lượng cao[cite: 187].", answer: false }, // Yếu tố quan trọng nhất là diện tích đất phù sa rộng lớn và địa hình bằng phẳng[cite: 187].
-                { text: "d) (Vận dụng) Giải pháp chủ yếu để sử dụng hiệu quả tài nguyên đất trong sản xuất lúa ở Đồng bằng sông Cửu Long là tăng vụ và chuyển đổi mục đích sử dụng đất[cite: 187].", answer: true }
-            ]},
-            // Đề 2 - Đồng bằng sông Cửu Long (Cây ăn quả)
-            { type: 'tf', text: "Về định hướng chuyển đổi và phát triển cây ăn quả tại Đồng bằng sông Cửu Long[cite: 187]:", options: [
-                { text: "a) (Nhận biết) Các kĩ thuật canh tác hiện đại được áp dụng trong sản xuất cây ăn quả của vùng chủ yếu nhằm nâng cao năng lực quản lí các sản phẩm đặc thù, phát triển mạng lưới cung ứng nông sản chất lượng cao[cite: 187].", answer: false }, // Áp dụng kĩ thuật hiện đại nhằm trực tiếp nâng cao năng suất, chất lượng và thích ứng biến đổi khí hậu[cite: 187].
-                { text: "b) (Nhận biết) Đồng bằng sông Cửu Long có cơ cấu cây ăn quả đa dạng[cite: 187].", answer: true },
-                { text: "c) (Vận dụng) Sản xuất cây ăn quả của vùng đang phát triển theo hướng nâng cao chất lượng và đảm bảo an toàn cho người tiêu dùng[cite: 187].", answer: true },
-                { text: "d) (Vận dụng) Diện tích cây ăn quả của vùng tăng chủ yếu do áp dụng quy trình chăm sóc theo hướng bền vững, đa dạng hóa cơ cấu cây trồng[cite: 187].", answer: false } // Diện tích tăng chủ yếu do chuyển đổi cơ cấu từ đất trồng lúa kém hiệu quả sang cây ăn quả mang lại giá trị cao hơn[cite: 187].
-            ]}
-        ]
+function markActiveSidebar(id) {
+    document.querySelectorAll('.side-item').forEach(b => {
+        const on = b.dataset.id === String(id);
+        b.classList.toggle('bg-emerald-100', on);
+        b.classList.toggle('border-emerald-500', on);
+    });
+}
+
+/* ---------- 4. MÀN HÌNH ---------- */
+function showScreen(name) {
+    $('welcome-screen').classList.toggle('hidden-element', name !== 'welcome');
+    $('test-screen').classList.toggle('hidden-element', name === 'welcome');
+    $('result-screen').classList.toggle('hidden-element', name !== 'result');
+    $('submit-btn').classList.toggle('hidden-element', name === 'result');
+    if (name === 'welcome') $('timer-display').lastChild.textContent = ' 50:00';
+}
+
+/* ---------- 5. LOAD ĐỀ + RENDER ---------- */
+function loadTest(section, key) {
+    stopTimer();
+    const data = appDatabase[section][key];
+    let qs;
+    if (section === 'mocktest') qs = data;
+    else qs = [...(data.exercises.mcq || []), ...(data.exercises.tf || [])];
+
+    state = { section, key, questions: qs, submitted: false };
+    $('current-test-title').textContent = section === 'mocktest' ? `Đề thi thử số ${key}` : data.title;
+    $('current-test-subtitle').lastChild.textContent = section === 'mocktest'
+        ? ' Định dạng mới 2026 • Làm bài trong 50 phút'
+        : ' Luyện tập theo chủ đề • Không giới hạn thời gian';
+
+    renderQuestions(qs);
+    showScreen('test');
+    markActiveSidebar(key);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+
+    if (section === 'mocktest') { secondsLeft = MOCK_SECONDS; startTimer(true); }
+    else { secondsElapsed = 0; startTimer(false); }
+}
+
+function renderQuestions(qs) {
+    let nMcq = 0, nTf = 0;
+    $('questions-container').innerHTML = qs.map((q, i) => {
+        if (q.type === 'mcq') {
+            nMcq++;
+            const opts = q.options.map((o, j) => `
+                <label class="option-label flex items-start gap-3 p-3 border border-gray-200 rounded-lg" id="opt-${i}-${j}">
+                    <input type="radio" name="q${i}" value="${j}" class="mt-1 accent-emerald-600">
+                    <span><b>${'ABCD'[j]}.</b> ${esc(o)}</span>
+                </label>`).join('');
+            return `<div class="question-box border border-gray-200 rounded-2xl p-5" id="qbox-${i}">
+                <p class="font-semibold mb-3">Câu ${nMcq}. ${esc(q.text)}</p>
+                <div class="grid gap-2 md:grid-cols-2">${opts}</div></div>`;
+        }
+        nTf++;
+        const rows = q.options.map((o, j) => `
+            <div class="flex flex-col md:flex-row md:items-center gap-2 p-3 border border-gray-200 rounded-lg" id="opt-${i}-${j}">
+                <div class="flex-grow">${esc(o.text)}</div>
+                <div class="flex gap-2 flex-shrink-0">
+                    <label class="option-label px-4 py-1.5 border border-gray-200 rounded-md"><input type="radio" name="q${i}_${j}" value="true" class="accent-emerald-600"> <span>Đúng</span></label>
+                    <label class="option-label px-4 py-1.5 border border-gray-200 rounded-md"><input type="radio" name="q${i}_${j}" value="false" class="accent-emerald-600"> <span>Sai</span></label>
+                </div>
+            </div>`).join('');
+        return `<div class="question-box border border-gray-200 rounded-2xl p-5" id="qbox-${i}">
+            <p class="font-semibold mb-3">Câu Đ/S ${nTf}. ${esc(q.text)}</p>
+            <div class="space-y-2">${rows}</div></div>`;
+    }).join('');
+}
+
+/* ---------- 6. ĐỒNG HỒ ---------- */
+const fmt = (s) => String(Math.floor(s / 60)).padStart(2, '0') + ':' + String(s % 60).padStart(2, '0');
+function paintTimer(s) { $('timer-display').lastChild.textContent = ' ' + fmt(s); }
+
+function startTimer(countdown) {
+    paintTimer(countdown ? secondsLeft : 0);
+    timerId = setInterval(() => {
+        if (countdown) {
+            secondsLeft--;
+            paintTimer(Math.max(secondsLeft, 0));
+            if (secondsLeft <= 0) { alert('Hết giờ! Hệ thống tự động nộp bài.'); submitTest(true); }
+        } else { secondsElapsed++; paintTimer(secondsElapsed); }
+    }, 1000);
+}
+function stopTimer() { if (timerId) { clearInterval(timerId); timerId = null; } }
+
+/* ---------- 7. CHẤM ĐIỂM ----------
+   TN nhiều lựa chọn: 0,25 điểm/câu.
+   Đúng/Sai: đúng 1 ý = 0,1; 2 ý = 0,25; 3 ý = 0,5; 4 ý = 1,0.
+   Điểm hiển thị quy về thang 10 theo tỉ lệ (đề thi thử 24 + 4 câu = đúng 10 điểm). */
+const TF_POINTS = [0, 0.1, 0.25, 0.5, 1];
+
+function submitTest(force = false) {
+    if (state.submitted || !state.questions.length) return;
+
+    if (!force) {
+        let blank = 0;
+        state.questions.forEach((q, i) => {
+            if (q.type === 'mcq') { if (!document.querySelector(`input[name="q${i}"]:checked`)) blank++; }
+            else q.options.forEach((_, j) => { if (!document.querySelector(`input[name="q${i}_${j}"]:checked`)) blank++; });
+        });
+        if (blank > 0 && !confirm(`Bạn còn ${blank} mục chưa trả lời. Vẫn nộp bài?`)) return;
     }
-};
 
-// ================= DỮ LIỆU ĐỀ THI THỬ MÔN ĐỊA LÍ =================
-appDatabase.mocktest[1] = [
-    ...appDatabase.khoi11[1].exercises.tf,
-    ...appDatabase.khoi12[1].exercises.tf,
-    ...appDatabase.khoi12[2].exercises.tf,
-    ...appDatabase.khoi12[3].exercises.tf
-];
+    stopTimer();
+    state.submitted = true;
+    let earned = 0, max = 0, right = 0, total = 0;
+
+    state.questions.forEach((q, i) => {
+        if (q.type === 'mcq') {
+            max += 0.25; total++;
+            const sel = document.querySelector(`input[name="q${i}"]:checked`);
+            const picked = sel ? Number(sel.value) : -1;
+            const okLabel = $(`opt-${i}-${q.answer}`);
+            okLabel.classList.add('correct-ans-box'); okLabel.querySelector('span').classList.add('correct-ans-text');
+            if (picked === q.answer) { earned += 0.25; right++; }
+            else if (picked >= 0) {
+                const bad = $(`opt-${i}-${picked}`);
+                bad.classList.add('wrong-ans-box'); bad.querySelector('span').classList.add('wrong-ans-text');
+            }
+        } else {
+            max += 1; total++;
+            let ok = 0;
+            q.options.forEach((o, j) => {
+                const sel = document.querySelector(`input[name="q${i}_${j}"]:checked`);
+                const row = $(`opt-${i}-${j}`);
+                const picked = sel ? sel.value === 'true' : null;
+                if (picked === o.answer) { ok++; row.classList.add('correct-ans-box'); }
+                else row.classList.add('wrong-ans-box');
+                row.insertAdjacentHTML('beforeend',
+                    `<div class="text-xs font-bold ${picked === o.answer ? 'text-green-700' : 'text-red-700'} md:ml-2">Đáp án: ${o.answer ? 'Đúng' : 'Sai'}</div>`);
+            });
+            earned += TF_POINTS[ok];
+            if (ok === 4) right++;
+        }
+    });
+
+    state.questions.forEach((_, i) => document.querySelectorAll(`#qbox-${i} input`).forEach(el => el.disabled = true));
+
+    const score10 = max ? (earned / max) * 10 : 0;
+    $('score-display').textContent = `${score10.toFixed(2).replace(/\.?0+$/, '')}/10`;
+    showScreen('result');
+    $('result-screen').scrollIntoView({ behavior: 'smooth' });
+}
+
+function continueAfterResult() {
+    const section = state.section;
+    selectSection(section);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+/* ---------- 8. KHỞI ĐỘNG ---------- */
+document.addEventListener('DOMContentLoaded', () => selectSection('khoi12'));
