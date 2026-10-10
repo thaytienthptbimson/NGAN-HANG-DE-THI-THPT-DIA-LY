@@ -156,7 +156,7 @@ function renderQuestions(qs) {
         }
         nTf++;
         const rows = q.options.map((o, j) => `
-            <div class="flex flex-col md:flex-row md:items-center gap-2 p-3 border border-gray-200 rounded-lg" id="opt-${i}-${j}">
+            <div class="flex flex-col md:flex-row md:flex-wrap md:items-center gap-2 p-3 border border-gray-200 rounded-lg" id="opt-${i}-${j}">
                 <div class="flex-grow">${esc(o.text)}</div>
                 <div class="flex gap-2 flex-shrink-0">
                     <label class="option-label px-4 py-1.5 border border-gray-200 rounded-md"><input type="radio" name="q${i}_${j}" value="true" class="accent-emerald-600"> <span>Đúng</span></label>
@@ -164,7 +164,7 @@ function renderQuestions(qs) {
                 </div>
             </div>`).join('');
         return `<div class="question-box border border-gray-200 rounded-2xl p-5" id="qbox-${i}">
-            <p class="font-semibold mb-3">Câu Đ/S ${nTf}. ${esc(q.text)}</p>
+            <p class="font-semibold mb-3">Câu Đ/S ${nTf}. ${esc(q.text.replace(/^Câu\s*\d+\.\s*/, ''))}</p>
             ${renderCharts(q.charts || (q.chart ? [q.chart] : []))}
             <div class="space-y-2">${rows}</div></div>`;
     }).join('');
@@ -304,6 +304,8 @@ function submitTest(force = false) {
             const picked = sel ? Number(sel.value) : -1;
             const okLabel = $(`opt-${i}-${q.answer}`);
             okLabel.classList.add('correct-ans-box'); okLabel.querySelector('span').classList.add('correct-ans-text');
+            if (q.explain) $(`qbox-${i}`).insertAdjacentHTML('beforeend',
+                `<div class="mt-3 text-xs text-gray-700 bg-white/70 border-l-4 border-emerald-400 rounded px-3 py-2">💡 <b>Đáp án ${'ABCD'[q.answer]}.</b> ${esc(q.explain)}</div>`);
             if (picked === q.answer) { earned += 0.25; right++; }
             else if (picked >= 0) {
                 const bad = $(`opt-${i}-${picked}`);
@@ -319,7 +321,8 @@ function submitTest(force = false) {
                 if (picked === o.answer) { ok++; row.classList.add('correct-ans-box'); }
                 else row.classList.add('wrong-ans-box');
                 row.insertAdjacentHTML('beforeend',
-                    `<div class="text-xs font-bold ${picked === o.answer ? 'text-green-700' : 'text-red-700'} md:ml-2">Đáp án: ${o.answer ? 'Đúng' : 'Sai'}</div>`);
+                    `<div class="text-xs font-bold ${picked === o.answer ? 'text-green-700' : 'text-red-700'} md:ml-2">Đáp án: ${o.answer ? 'Đúng' : 'Sai'}</div>` +
+                    (o.explain ? `<div class="w-full basis-full text-xs text-gray-700 bg-white/70 border-l-4 border-emerald-400 rounded px-3 py-2">💡 ${esc(o.explain)}</div>` : ''));
             });
             earned += TF_POINTS[ok];
             if (ok === 4) right++;

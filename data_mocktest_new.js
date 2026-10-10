@@ -2,12 +2,13 @@
    ĐỀ THI THỬ MỚI (số 8 và 9) - Cấu trúc: 24 câu TNNLC + 4 câu Đúng/Sai
    Phần Đúng/Sai bám sát đề mẫu: mỗi câu 4 ý
      a) Nhận biết  b) Nhận biết  c) Thông hiểu  d) Vận dụng
+   Câu trắc nghiệm có thể có lời giải thích: mq(text, options, answer, explain).
    Câu có biểu đồ: khai báo trong trường `charts` (app.js tự vẽ SVG).
    LƯU Ý: số liệu biểu đồ đã làm tròn, dùng cho mục đích ôn tập;
           nên đối chiếu Niên giám thống kê/SGK trước khi dùng chính thức.
 ========================================================================= */
 
-const mq = (text, options, answer) => ({ type: 'mcq', text, options, answer });
+const mq = (text, options, answer, explain) => { const q = { type: 'mcq', text, options, answer }; if (explain) q.explain = explain; return q; };
 const tfq = (text, items, charts) => {
     const q = { type: 'tf', text, options: items.map(([t, a]) => ({ text: t, answer: a })) };
     if (charts) q.charts = charts;
@@ -183,19 +184,20 @@ dataMocktestNew[9] = [
 ];
 
 /* ============================ ĐỀ SỐ 1 (THEO ĐỀ MẪU) ============================
-   Phần II lấy nguyên 4 câu Đúng/Sai của đề mẫu (có biểu đồ ở câu 1 và câu 2):
-     Câu 1: Tây Nam Á (biểu đồ dân số, GDP/người)   - Địa lí 11
-     Câu 2: Tự nhiên Miền Tây Bắc và Bắc Trung Bộ    - Địa lí 12
-     Câu 3: Nội thương                                - Địa lí 12
-     Câu 4: Đồng bằng sông Cửu Long (lúa)             - Địa lí 12
-   (Bốn câu "Đề 2" của mẫu: EU, phân hoá Đông–Tây, Du lịch, cây ăn quả ĐBSCL
-    vẫn nằm trong các chủ đề luyện tập và có thể dùng cho đề số 2.)
+   Phần II: 4 câu Đúng/Sai lấy từ đề mẫu, CÓ 2 CÂU BIỂU ĐỒ + lời giải thích từng ý:
+     Câu 1: Tây Nam Á (biểu đồ dân số, GDP/người)       - Địa lí 11
+     Câu 2: Liên minh châu Âu (biểu đồ dân thành thị/nông thôn) - Địa lí 11
+     Câu 3: Tự nhiên Miền Tây Bắc và Bắc Trung Bộ        - Địa lí 12
+     Câu 4: Đồng bằng sông Cửu Long (lúa)                - Địa lí 12
+   Các câu còn lại của mẫu (nội thương, du lịch, phân hoá Đông–Tây, cây ăn quả
+   ĐBSCL) vẫn nằm trong các chủ đề luyện tập, dùng được cho đề số 2.
 ================================================================================= */
 const cloneQ = (q) => JSON.parse(JSON.stringify(q));
+const withExplain = (q, notes) => { q.options.forEach((o, i) => { if (notes[i]) o.explain = notes[i]; }); return q; };
 const sampleTF = (typeof dataExtra !== 'undefined') ? {
     tayNamA: dataExtra.khoi11[3].exercises.tf[0],
+    eu: dataExtra.khoi11[3].exercises.tf[1],
     tuNhien: dataExtra.khoi12[3].exercises.tf[0],
-    noiThuong: dataExtra.khoi12[4].exercises.tf[0],
     lua: dataExtra.khoi12[5].exercises.tf[0]
 } : null;
 
@@ -234,7 +236,194 @@ dataMocktestNew[1] = [
     mq("Hiệp định EVFTA giữa Việt Nam và EU tác động tích cực chủ yếu nào sau đây đến kinh tế nước ta?", ["Làm giảm quan hệ thương mại với các đối tác khác.", "Mở rộng thị trường xuất khẩu sang EU và thu hút đầu tư, công nghệ.", "Chấm dứt nhập khẩu hàng hoá.", "Hạn chế phát triển công nghiệp chế biến."], 1),
 
     // ---------- PHẦN II: 4 câu Đúng/Sai (theo đề mẫu) ----------
-    ...(sampleTF ? [cloneQ(sampleTF.tayNamA), cloneQ(sampleTF.tuNhien), cloneQ(sampleTF.noiThuong), cloneQ(sampleTF.lua)] : [])
+    ...(sampleTF ? [
+        withExplain(cloneQ(sampleTF.tayNamA), [
+            "Dân số và GDP/người của I-rắc, I-xra-en, A-rập Xê-út, Cô-oét đều khác nhau rõ rệt trên biểu đồ.",
+            "Sai: GDP/người của Cô-oét (37.204 USD) chỉ gấp khoảng 1,28 lần A-rập Xê-út (28.932 USD), không phải 2 lần.",
+            "Đúng: I-xra-en có GDP/người cao nhất (khoảng 54.200 USD), I-rắc thấp nhất (khoảng 5.900 USD).",
+            "Đúng: bất ổn chính trị và giá dầu mỏ biến động làm kinh tế các nước phát triển không đồng đều, nên GDP/người chênh lệch."
+        ]),
+        withExplain(cloneQ(sampleTF.eu), [
+            "Sai: tỉ lệ dân nông thôn của I-ta-li-a (30,3%) cao hơn Pháp (21,2%) là 9,1 điểm phần trăm, không phải 10,2%.",
+            "Đúng: Tây Ban Nha có tỉ lệ dân thành thị lớn nhất (80,3%); Ba Lan nhỏ nhất (60,1%).",
+            "Đúng: tỉ lệ dân nông thôn của các nước chênh lệch rõ (từ 19,7% đến 39,9%).",
+            "Đúng: số lượng đô thị, quy mô nền kinh tế và lịch sử chuyển cư khác nhau làm tỉ lệ dân thành thị chênh lệch."
+        ]),
+        withExplain(cloneQ(sampleTF.tuNhien), [
+            "Đúng: miền có núi cao Hoàng Liên Sơn, Trường Sơn Bắc, đồng bằng ven biển hẹp nên địa hình đa dạng.",
+            "Sai: sản xuất quanh năm, thâm canh, tăng vụ, vùng chuyên canh quy mô lớn là thuận lợi của vùng đồng bằng, không phải vùng đồi núi.",
+            "Sai: gió Tây khô nóng do gió mùa Tây Nam bị biến tính (hiệu ứng phơn) khi vượt dãy Trường Sơn, không phải do Tín phong bán cầu Nam.",
+            "Sai: thành phần loài ôn đới chủ yếu do đai cao của địa hình (dãy Hoàng Liên Sơn), không phải do vị trí xa chí tuyến."
+        ]),
+        withExplain(cloneQ(sampleTF.lua), [
+            "Đúng: Đồng bằng sông Cửu Long có diện tích và sản lượng lúa lớn nhất cả nước.",
+            "Sai: khó khăn lớn nhất là xâm nhập mặn và thiếu nước ngọt vào mùa khô do biến đổi khí hậu, không phải nhiệt độ trung bình tăng.",
+            "Sai: yếu tố quan trọng nhất là diện tích đất phù sa rộng lớn và địa hình bằng phẳng.",
+            "Đúng: tăng vụ và chuyển đổi mục đích sử dụng đất giúp dùng hiệu quả tài nguyên đất."
+        ])
+    ] : [])
+];
+
+
+// Lời giải thích cho 24 câu trắc nghiệm của đề 1
+(function () {
+    const ex1 = [
+    "Tây Nam Á có trữ lượng dầu mỏ và khí tự nhiên thuộc loại lớn nhất thế giới, là nguồn thu ngoại tệ chính của nhiều nước.",
+    "Ơ-rô là đồng tiền chung được phần lớn các nước thành viên EU sử dụng.",
+    "Trường Sơn Bắc chạy dọc Bắc Trung Bộ; Hoàng Liên Sơn thuộc Tây Bắc, Con Voi và Ngân Sơn thuộc Bắc Bộ.",
+    "Hà Nội và Thành phố Hồ Chí Minh đông dân, mức sống cao, là đầu mối thương mại lớn nhất cả nước.",
+    "Đồng bằng sông Cửu Long có diện tích và sản lượng lúa lớn nhất, đảm bảo an ninh lương thực và xuất khẩu gạo.",
+    "Cô-oét nằm ở Tây Nam Á; Lào và Thái Lan thuộc Đông Nam Á, Ấn Độ thuộc Nam Á.",
+    "Tây Nam Á nằm trong đới nóng, chịu ảnh hưởng khối khí lục địa khô nên khô hạn, nhiều hoang mạc, sông ngòi thưa.",
+    "Công nghệ thông tin và internet phát triển là điều kiện nền tảng thúc đẩy thương mại điện tử.",
+    "Đất phù sa rộng lớn, địa hình bằng phẳng và nguồn nước dồi dào là điều kiện thuận lợi nhất cho trồng lúa.",
+    "Theo độ cao, thiên nhiên nước ta phân hoá thành đai nhiệt đới gió mùa, cận nhiệt đới gió mùa trên núi và ôn đới gió mùa trên núi.",
+    "Khí hậu cận xích đạo, đất phù sa và nguồn nước phong phú cho phép trồng nhiều loại cây ăn quả.",
+    "Tài nguyên du lịch đa dạng, phong phú và đặc sắc là sức hút chủ yếu đối với khách quốc tế.",
+    "Nâng cao chất lượng sản phẩm du lịch cần đa dạng hoá sản phẩm, cải thiện dịch vụ và nguồn nhân lực.",
+    "Cây ăn quả cho giá trị cao hơn lúa kém hiệu quả và dễ thích ứng với hạn, mặn hơn.",
+    "Chuyển đổi số giúp mở rộng thị trường, giảm chi phí và tăng tiện ích cho người tiêu dùng.",
+    "Chênh lệch nội thương xuất phát từ trình độ phát triển và mức sống; cần đầu tư hạ tầng và nâng cao mức sống ở vùng khó khăn.",
+    "Dầu mỏ hữu hạn và giá biến động nên cần đa dạng hoá kinh tế để phát triển ổn định.",
+    "Ở vùng núi dốc cần trồng cây phù hợp, giữ rừng và chống xói mòn để canh tác bền vững.",
+    "EU có thị trường chung, đồng tiền chung, thể chế chặt chẽ và chính sách chung nhiều lĩnh vực.",
+    "Tỉ lệ dân thành thị phụ thuộc vào trình độ phát triển kinh tế và lịch sử đô thị hoá của từng nước.",
+    "Gió Tây khô nóng gây hạn, nóng khô, làm cây trồng sinh trưởng kém.",
+    "Nông nghiệp xanh nâng chất lượng nông sản, giảm tác động môi trường, hướng tới phát triển bền vững.",
+    "Cô-oét phụ thuộc xuất khẩu dầu nên khi giá giảm, thu ngân sách và xuất khẩu giảm, kinh tế kém ổn định.",
+    "EVFTA mở rộng thị trường xuất khẩu sang EU và thu hút đầu tư, công nghệ."
+];
+    dataMocktestNew[1].filter(q => q.type === 'mcq').forEach((q, i) => { q.explain = ex1[i]; });
+})();
+
+const sampleTF2 = (typeof dataExtra !== 'undefined') ? {
+    dongTay: dataExtra.khoi12[3].exercises.tf[1],
+    noiThuong: dataExtra.khoi12[4].exercises.tf[0],
+    duLich: dataExtra.khoi12[4].exercises.tf[1],
+    cayAnQua: dataExtra.khoi12[5].exercises.tf[1]
+} : null;
+
+/* ============================ ĐỀ SỐ 2 (THEO ĐỀ MẪU) ============================
+   Phần II: 4 câu Đúng/Sai, CÓ 2 CÂU BIỂU ĐỒ + giải thích từng ý:
+     Câu 1: Nội thương (biểu đồ cột)           Câu 2: Phân hoá Đông – Tây (đề mẫu)
+     Câu 3: Du lịch nội địa (biểu đồ cột)      Câu 4: Cây ăn quả ĐBSCL (đề mẫu)
+   Câu 1 và câu 3 là dạng biểu đồ soạn mới theo cùng cấu trúc a, b (nhận biết),
+   c (thông hiểu), d (vận dụng) của đề mẫu.
+================================================================================= */
+dataMocktestNew[2] = [
+    // ---------- PHẦN I: 24 câu trắc nghiệm nhiều lựa chọn ----------
+    // Nhận biết
+    mq("Hiện nay Liên minh châu Âu (EU) có bao nhiêu quốc gia thành viên?", ["25 quốc gia.", "27 quốc gia.", "28 quốc gia.", "30 quốc gia."], 1,
+       "Sau khi Anh rời EU năm 2020, EU còn 27 quốc gia thành viên."),
+    mq("Trụ sở chính của các cơ quan đầu não Liên minh châu Âu đặt ở thủ đô nào?", ["Pa-ri.", "Béc-lin.", "Bruy-xen.", "Rô-ma."], 2,
+       "Bruy-xen (Bỉ) là nơi đặt Ủy ban châu Âu và nhiều cơ quan chính của EU."),
+    mq("Vùng đồi núi nước ta phân bố chủ yếu ở phía nào?", ["Phía đông và đông nam.", "Phía tây và tây bắc.", "Phía nam.", "Ven biển phía đông."], 1,
+       "Đồi núi chiếm 3/4 diện tích, tập trung ở phía tây và tây bắc; đồng bằng ở phía đông và đông nam."),
+    mq("Siêu thị và trung tâm thương mại thuộc hình thức hoạt động nào sau đây của nội thương?", ["Bán lẻ hàng hoá.", "Sản xuất công nghiệp.", "Vận tải hàng hoá.", "Tín dụng ngân hàng."], 0,
+       "Siêu thị, trung tâm thương mại là hình thức bán lẻ hiện đại, ngày càng phát triển."),
+    mq("Tài nguyên du lịch nào sau đây thuộc nhóm tài nguyên du lịch tự nhiên?", ["Bãi biển, hang động.", "Di tích lịch sử.", "Lễ hội truyền thống.", "Làng nghề thủ công."], 0,
+       "Bãi biển, hang động, núi, sông hồ là tài nguyên tự nhiên; các loại còn lại thuộc tài nguyên nhân văn."),
+    mq("Loại cây ăn quả đặc sản nổi tiếng của Đồng bằng sông Cửu Long là", ["chè Shan tuyết.", "xoài cát Hoà Lộc.", "cà phê chè.", "hồ tiêu."], 1,
+       "Xoài cát Hoà Lộc (Tiền Giang) là đặc sản của Đồng bằng sông Cửu Long; các cây còn lại không phải cây ăn quả đặc trưng của vùng."),
+
+    // Thông hiểu
+    mq("Tây Nam Á có vị trí địa chính trị quan trọng chủ yếu do nguyên nhân nào sau đây?", ["Nằm ở ngã ba của ba châu lục Á, Âu, Phi và có nguồn dầu mỏ lớn.", "Có diện tích lớn nhất thế giới.", "Không có tài nguyên khoáng sản.", "Nằm hoàn toàn trong vùng hàn đới."], 0,
+       "Vị trí ngã ba Á – Âu – Phi cùng dầu mỏ khiến khu vực có ý nghĩa chiến lược về kinh tế và chính trị."),
+    mq("Sự khác biệt thiên nhiên giữa vùng núi Đông Bắc và Tây Bắc chủ yếu do nhân tố nào sau đây?", ["Hướng địa hình, đặc biệt là dãy Hoàng Liên Sơn chắn gió mùa Đông Bắc.", "Sự khác nhau về diện tích rừng.", "Tác động của dòng biển nóng.", "Chênh lệch số dân giữa hai vùng."], 0,
+       "Dãy Hoàng Liên Sơn chắn gió mùa Đông Bắc nên Tây Bắc ấm hơn Đông Bắc."),
+    mq("Đồng bằng ven biển miền Trung nước ta có đặc điểm nổi bật nào sau đây?", ["Rộng lớn, bằng phẳng, ít bị chia cắt.", "Hẹp ngang, bị chia cắt do núi đâm sát biển.", "Chủ yếu do phù sa sông lớn bồi tụ rộng.", "Nằm sâu trong nội địa."], 1,
+       "Dãy núi đâm ngang ra biển làm đồng bằng ven biển miền Trung nhỏ hẹp và bị chia cắt."),
+    mq("Hoạt động nội thương giữa các vùng nước ta phân hoá chủ yếu do nguyên nhân nào sau đây?", ["Khác nhau về trình độ phát triển kinh tế và mức sống dân cư.", "Khác nhau về diện tích rừng.", "Khác nhau về số lượng sông ngòi.", "Khác nhau về hướng địa hình."], 0,
+       "Vùng kinh tế phát triển, thu nhập cao có sức mua lớn nên nội thương phát triển mạnh hơn."),
+    mq("Diện tích cây ăn quả ở Đồng bằng sông Cửu Long tăng chủ yếu do nguyên nhân nào sau đây?", ["Chuyển đổi từ đất trồng lúa kém hiệu quả sang cây ăn quả có giá trị cao.", "Khai thác thêm đất rừng ngập mặn.", "Giảm số lượng lao động nông nghiệp.", "Xuất khẩu lúa gạo tăng mạnh."], 0,
+       "Chuyển đổi cơ cấu cây trồng giúp nâng cao giá trị sử dụng đất và thích ứng biến đổi khí hậu."),
+    mq("Du lịch được coi là ngành kinh tế quan trọng ở nước ta chủ yếu vì", ["tạo nhiều việc làm, đóng góp vào GDP và thúc đẩy các ngành khác phát triển.", "không cần đầu tư cơ sở vật chất.", "chỉ phục vụ nhu cầu của dân cư trong nước.", "không phụ thuộc vào môi trường."], 0,
+       "Du lịch có tính liên ngành, tạo việc làm, tăng thu nhập ngoại tệ và thúc đẩy dịch vụ, giao thông, nông nghiệp."),
+
+    // Vận dụng
+    mq("Giải pháp nào sau đây góp phần phát triển du lịch xanh ở nước ta?", ["Khai thác tối đa tài nguyên để thu hút khách.", "Bảo vệ môi trường, phát triển du lịch có trách nhiệm và sử dụng năng lượng sạch.", "Xây dựng thêm công trình lớn trong khu bảo tồn.", "Hạn chế quản lí khách du lịch."], 1,
+       "Du lịch xanh gắn với bảo vệ môi trường, sử dụng tài nguyên hợp lí và có trách nhiệm với cộng đồng."),
+    mq("Việc ứng dụng đặt phòng trực tuyến, tham quan thực tế ảo trong du lịch có tác dụng chủ yếu nào sau đây?", ["Làm giảm số lượng khách du lịch.", "Gia tăng trải nghiệm, thuận tiện cho du khách và mở rộng thị trường.", "Giảm vai trò của hướng dẫn viên hoàn toàn.", "Hạn chế quảng bá điểm đến."], 1,
+       "Công nghệ số giúp du khách tiếp cận dịch vụ dễ dàng, nâng cao trải nghiệm và mở rộng thị trường."),
+    mq("Giải pháp chủ yếu để sản xuất cây ăn quả ở Đồng bằng sông Cửu Long phát triển bền vững là", ["tăng sử dụng thuốc bảo vệ thực vật.", "áp dụng tiêu chuẩn sản xuất an toàn, truy xuất nguồn gốc và liên kết tiêu thụ.", "mở rộng diện tích trên đất nhiễm mặn.", "chỉ xuất khẩu tươi, không chế biến."], 1,
+       "Sản xuất an toàn, truy xuất nguồn gốc và liên kết chuỗi giá trị nâng chất lượng, ổn định đầu ra."),
+    mq("Để phát triển nội thương ở khu vực miền núi, nước ta cần ưu tiên giải pháp nào sau đây?", ["Giảm đầu tư giao thông.", "Hoàn thiện hạ tầng giao thông, chợ và mạng lưới phân phối.", "Hạn chế buôn bán giữa các vùng.", "Giảm sản xuất hàng hoá."], 1,
+       "Hạ tầng giao thông và mạng lưới phân phối là điều kiện để hàng hoá lưu thông ở miền núi."),
+    mq("Xu hướng nào sau đây thể hiện sự hiện đại hoá của nội thương nước ta?", ["Thu hẹp mạng lưới siêu thị.", "Mở rộng chuỗi bán lẻ hiện đại và thương mại điện tử.", "Chỉ buôn bán tại chợ truyền thống.", "Giảm sử dụng thanh toán không dùng tiền mặt."], 1,
+       "Chuỗi bán lẻ hiện đại, thương mại điện tử và thanh toán số là biểu hiện của hiện đại hoá nội thương."),
+    mq("Để thích ứng với sự phân hoá thiên nhiên Đông – Tây, hướng bố trí sản xuất nông nghiệp hợp lí là", ["trồng một loại cây trên toàn lãnh thổ.", "bố trí cây trồng, vật nuôi phù hợp điều kiện sinh thái từng khu vực.", "bỏ hoang vùng đồi núi.", "chỉ phát triển nông nghiệp ở đồng bằng."], 1,
+       "Mỗi vùng sinh thái có điều kiện khác nhau nên cần bố trí cây trồng, vật nuôi phù hợp để đạt hiệu quả cao."),
+
+    // Vận dụng cao
+    mq("Việc Anh rời khỏi EU (Brexit) cho thấy điều nào sau đây về liên kết khu vực?", ["Liên kết khu vực không có thách thức nào.", "Liên kết khu vực có thể gặp thách thức khi lợi ích quốc gia và lợi ích chung chưa hài hoà.", "Mọi nước đều muốn rời EU.", "EU không còn thị trường chung."], 1,
+       "Brexit phản ánh mâu thuẫn giữa lợi ích quốc gia và lợi ích chung trong liên kết khu vực."),
+    mq("Lũ quét, sạt lở đất ở vùng núi Tây Bắc gia tăng chủ yếu do nguyên nhân nào sau đây?", ["Địa hình dốc, mưa lớn tập trung và suy giảm độ che phủ rừng.", "Địa hình bằng phẳng.", "Khí hậu khô hạn quanh năm.", "Sông ngòi ngắn và ít nước."], 0,
+       "Địa hình dốc kết hợp mưa lớn và mất rừng làm tăng nguy cơ lũ quét, sạt lở."),
+    mq("Mô hình lúa – tôm ở vùng ven biển Đồng bằng sông Cửu Long thể hiện điều gì?", ["Sự phụ thuộc hoàn toàn vào thời tiết.", "Sự thích ứng với xâm nhập mặn và tận dụng điều kiện tự nhiên để tăng hiệu quả kinh tế.", "Việc bỏ hoang đất nhiễm mặn.", "Giảm đa dạng sinh kế."], 1,
+       "Luân canh lúa – tôm tận dụng nước ngọt mùa mưa và nước lợ mùa khô, thích ứng xâm nhập mặn."),
+    mq("Phát triển du lịch cộng đồng ở miền núi có ý nghĩa chủ yếu nào sau đây?", ["Làm mất bản sắc văn hoá địa phương.", "Tạo sinh kế cho người dân và góp phần bảo tồn văn hoá, môi trường.", "Giảm thu nhập của người dân.", "Hạn chế khách đến thăm."], 1,
+       "Du lịch cộng đồng đem lại thu nhập trực tiếp cho dân địa phương và khuyến khích gìn giữ văn hoá, môi trường."),
+    mq("Thương mại điện tử phát triển nhanh đòi hỏi nước ta phải đồng thời phát triển mạnh lĩnh vực nào sau đây?", ["Khai thác khoáng sản.", "Dịch vụ logistics và giao hàng.", "Chăn nuôi gia súc.", "Khai thác gỗ."], 1,
+       "Mua bán trực tuyến cần vận chuyển và giao hàng nhanh, chi phí hợp lí nên logistics phải phát triển theo."),
+    mq("Chuyển đổi số trong ngành du lịch đặt ra yêu cầu quan trọng nào sau đây?", ["Giảm đầu tư hạ tầng số.", "Nâng cao chất lượng nguồn nhân lực và hoàn thiện hạ tầng số.", "Hạn chế dữ liệu về du khách.", "Chỉ dùng phương thức thủ công."], 1,
+       "Chuyển đổi số cần lao động có kĩ năng số và hạ tầng công nghệ đồng bộ."),
+
+    // ---------- PHẦN II: 4 câu Đúng/Sai (theo đề mẫu) ----------
+    // Câu 1 - BIỂU ĐỒ: nội thương
+    withExplain(tfq("Câu 1. Cho biểu đồ tổng mức bán lẻ hàng hoá và doanh thu dịch vụ tiêu dùng của nước ta, giai đoạn 2015 – 2024:", [
+        ["a) (Nhận biết) Giai đoạn 2015 – 2024, tổng mức bán lẻ hàng hoá và doanh thu dịch vụ tiêu dùng của nước ta tăng liên tục.", true],
+        ["b) (Nhận biết) Năm 2019, tổng mức bán lẻ hàng hoá và doanh thu dịch vụ tiêu dùng cao hơn năm 2023.", false],
+        ["c) (Thông hiểu) Năm 2024, tổng mức bán lẻ hàng hoá và doanh thu dịch vụ tiêu dùng gấp khoảng 2 lần năm 2015.", true],
+        ["d) (Vận dụng) Tổng mức bán lẻ tăng chủ yếu do thu nhập và mức sống dân cư tăng, mạng lưới phân phối hiện đại mở rộng và thương mại điện tử phát triển.", true]
+    ], [{
+        kind: 'bar', title: "Tổng mức bán lẻ hàng hoá và doanh thu dịch vụ tiêu dùng của Việt Nam, giai đoạn 2015 – 2024", unit: "nghìn tỉ đồng",
+        categories: ["2015", "2019", "2023", "2024"],
+        series: [{ name: "Tổng mức bán lẻ", values: [3224, 4942, 6231, 6391] }],
+        note: "Số liệu đã làm tròn, dùng cho ôn tập."
+    }]), [
+        "Đúng: giá trị tăng qua các năm 2015, 2019, 2023, 2024 (3.224 → 4.942 → 6.231 → 6.391 nghìn tỉ đồng).",
+        "Sai: năm 2019 (4.942 nghìn tỉ đồng) thấp hơn năm 2023 (6.231 nghìn tỉ đồng).",
+        "Đúng: 6.391 : 3.224 ≈ 1,98, tức gấp khoảng 2 lần.",
+        "Đúng: thu nhập tăng, hệ thống siêu thị – trung tâm thương mại mở rộng và thương mại điện tử phát triển cùng thúc đẩy tăng trưởng bán lẻ."
+    ]),
+
+    // Câu 2 - Thông tin chữ (đề mẫu): phân hoá Đông – Tây
+    ...(sampleTF2 ? [
+        withExplain(cloneQ(sampleTF2.dongTay), [
+            "Đúng: vùng đồi núi phân bố chủ yếu ở phía tây và tây bắc nước ta.",
+            "Sai: khác biệt khí hậu Đông Bắc – Tây Bắc chủ yếu do hướng dãy Hoàng Liên Sơn chắn gió mùa Đông Bắc, không phải do dải hội tụ nhiệt đới và gió đông nam.",
+            "Sai: đồng bằng ven biển miền Trung hẹp ngang và bị chia cắt do núi đâm sát biển, không phải thấp và khá bằng phẳng.",
+            "Đúng: phân hoá khí hậu Đông – Tây giúp đổi mới cơ cấu cây trồng, nâng cao chất lượng nông sản đặc sản và phát triển nông nghiệp xanh."
+        ])
+    ] : []),
+
+    // Câu 3 - BIỂU ĐỒ: du lịch
+    withExplain(tfq("Câu 3. Cho biểu đồ số lượt khách du lịch nội địa của nước ta, giai đoạn 2019 – 2024:", [
+        ["a) (Nhận biết) Năm 2022, số lượt khách du lịch nội địa cao hơn năm 2019.", true],
+        ["b) (Nhận biết) Năm 2020 là năm có số lượt khách du lịch nội địa thấp nhất trong giai đoạn.", false],
+        ["c) (Thông hiểu) Năm 2024, số lượt khách du lịch nội địa gấp khoảng 1,3 lần năm 2019.", true],
+        ["d) (Vận dụng) Số lượt khách nội địa tăng nhanh giai đoạn 2021 – 2024 chủ yếu do dịch bệnh làm tăng nhu cầu đi du lịch xa.", false]
+    ], [{
+        kind: 'bar', title: "Số lượt khách du lịch nội địa của Việt Nam, giai đoạn 2019 – 2024", unit: "triệu lượt",
+        categories: ["2019", "2020", "2021", "2022", "2023", "2024"],
+        series: [{ name: "Khách nội địa", values: [85.0, 56.0, 40.0, 101.3, 108.0, 110.6] }],
+        note: "Số liệu đã làm tròn, dùng cho ôn tập."
+    }]), [
+        "Đúng: năm 2022 đạt 101,3 triệu lượt, cao hơn năm 2019 (85,0 triệu lượt).",
+        "Sai: năm 2021 (40,0 triệu lượt) mới là năm thấp nhất, năm 2020 là 56,0 triệu lượt.",
+        "Đúng: 110,6 : 85,0 ≈ 1,3, tức gấp khoảng 1,3 lần.",
+        "Sai: sau dịch, khách nội địa tăng chủ yếu nhờ kiểm soát dịch bệnh, các chính sách kích cầu, thu nhập và hạ tầng giao thông phát triển, không phải do dịch bệnh làm tăng nhu cầu."
+    ]),
+
+    // Câu 4 - Thông tin chữ (đề mẫu): cây ăn quả ĐBSCL
+    ...(sampleTF2 ? [
+        withExplain(cloneQ(sampleTF2.cayAnQua), [
+            "Sai: kĩ thuật canh tác hiện đại nhằm trực tiếp nâng cao năng suất, chất lượng và thích ứng biến đổi khí hậu.",
+            "Đúng: Đồng bằng sông Cửu Long có cơ cấu cây ăn quả đa dạng.",
+            "Đúng: sản xuất cây ăn quả đang hướng tới chất lượng cao và an toàn cho người tiêu dùng.",
+            "Sai: diện tích tăng chủ yếu do chuyển đổi từ đất trồng lúa kém hiệu quả sang cây ăn quả có giá trị cao hơn."
+        ])
+    ] : [])
 ];
 
 /* ---------- Xáo trộn vị trí đáp án (cố định, không đổi mỗi lần tải) ----------
