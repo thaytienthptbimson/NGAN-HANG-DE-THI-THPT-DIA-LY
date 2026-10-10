@@ -29,6 +29,54 @@ const dataExtra = {
                 "text": "d) (Vận dụng) Nguyên nhân chênh lệch GDP/người của một số quốc gia Tây Nam Á chủ yếu do sự bất ổn định về chính trị và biến động của giá dầu mỏ.",
                 "answer": true
               }
+            ],
+            "charts": [
+              {
+                "kind": "bar",
+                "title": "Dân số của một số quốc gia Tây Nam Á năm 2023",
+                "unit": "triệu người",
+                "categories": [
+                  "I-rắc",
+                  "I-xra-en",
+                  "A-rập Xê-út",
+                  "Cô-oét"
+                ],
+                "series": [
+                  {
+                    "name": "Dân số",
+                    "values": [
+                      45.5,
+                      9.8,
+                      36.9,
+                      4.3
+                    ]
+                  }
+                ],
+                "note": "Số liệu đã làm tròn, dùng cho ôn tập."
+              },
+              {
+                "kind": "bar",
+                "title": "GDP bình quân đầu người của một số quốc gia Tây Nam Á năm 2023",
+                "unit": "USD",
+                "categories": [
+                  "I-rắc",
+                  "I-xra-en",
+                  "A-rập Xê-út",
+                  "Cô-oét"
+                ],
+                "series": [
+                  {
+                    "name": "GDP/người",
+                    "values": [
+                      5900,
+                      54200,
+                      28932,
+                      37204
+                    ]
+                  }
+                ],
+                "note": "Số liệu đã làm tròn, dùng cho ôn tập."
+              }
             ]
           },
           {
@@ -50,6 +98,40 @@ const dataExtra = {
               {
                 "text": "d) (Vận dụng) Tỉ lệ dân thành thị của một số quốc gia EU có sự chênh lệch chủ yếu do khác nhau về số lượng đô thị, quy mô nền kinh tế và lịch sử chuyển cư.",
                 "answer": true
+              }
+            ],
+            "charts": [
+              {
+                "kind": "stacked",
+                "title": "Cơ cấu dân thành thị và dân nông thôn của một số quốc gia EU năm 2024",
+                "unit": "%",
+                "categories": [
+                  "Ba Lan",
+                  "I-ta-li-a",
+                  "Tây Ban Nha",
+                  "Pháp"
+                ],
+                "series": [
+                  {
+                    "name": "Dân thành thị",
+                    "values": [
+                      60.1,
+                      69.7,
+                      80.3,
+                      78.8
+                    ]
+                  },
+                  {
+                    "name": "Dân nông thôn",
+                    "values": [
+                      39.9,
+                      30.3,
+                      19.7,
+                      21.2
+                    ]
+                  }
+                ],
+                "note": "Số liệu đã làm tròn, dùng cho ôn tập."
               }
             ]
           }
@@ -234,6 +316,54 @@ const dataExtra = {
             "text": "d) (Vận dụng) Nguyên nhân chênh lệch GDP/người của một số quốc gia Tây Nam Á chủ yếu do sự bất ổn định về chính trị và biến động của giá dầu mỏ.",
             "answer": true
           }
+        ],
+        "charts": [
+          {
+            "kind": "bar",
+            "title": "Dân số của một số quốc gia Tây Nam Á năm 2023",
+            "unit": "triệu người",
+            "categories": [
+              "I-rắc",
+              "I-xra-en",
+              "A-rập Xê-út",
+              "Cô-oét"
+            ],
+            "series": [
+              {
+                "name": "Dân số",
+                "values": [
+                  45.5,
+                  9.8,
+                  36.9,
+                  4.3
+                ]
+              }
+            ],
+            "note": "Số liệu đã làm tròn, dùng cho ôn tập."
+          },
+          {
+            "kind": "bar",
+            "title": "GDP bình quân đầu người của một số quốc gia Tây Nam Á năm 2023",
+            "unit": "USD",
+            "categories": [
+              "I-rắc",
+              "I-xra-en",
+              "A-rập Xê-út",
+              "Cô-oét"
+            ],
+            "series": [
+              {
+                "name": "GDP/người",
+                "values": [
+                  5900,
+                  54200,
+                  28932,
+                  37204
+                ]
+              }
+            ],
+            "note": "Số liệu đã làm tròn, dùng cho ôn tập."
+          }
         ]
       },
       {
@@ -255,6 +385,40 @@ const dataExtra = {
           {
             "text": "d) (Vận dụng) Tỉ lệ dân thành thị của một số quốc gia EU có sự chênh lệch chủ yếu do khác nhau về số lượng đô thị, quy mô nền kinh tế và lịch sử chuyển cư.",
             "answer": true
+          }
+        ],
+        "charts": [
+          {
+            "kind": "stacked",
+            "title": "Cơ cấu dân thành thị và dân nông thôn của một số quốc gia EU năm 2024",
+            "unit": "%",
+            "categories": [
+              "Ba Lan",
+              "I-ta-li-a",
+              "Tây Ban Nha",
+              "Pháp"
+            ],
+            "series": [
+              {
+                "name": "Dân thành thị",
+                "values": [
+                  60.1,
+                  69.7,
+                  80.3,
+                  78.8
+                ]
+              },
+              {
+                "name": "Dân nông thôn",
+                "values": [
+                  39.9,
+                  30.3,
+                  19.7,
+                  21.2
+                ]
+              }
+            ],
+            "note": "Số liệu đã làm tròn, dùng cho ôn tập."
           }
         ]
       },

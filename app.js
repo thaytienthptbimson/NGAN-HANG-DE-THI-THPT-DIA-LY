@@ -32,6 +32,10 @@ if (typeof dataExtra !== 'undefined') {
             if (!merged[id] || merged[id].length === 0) merged[id] = dataExtra.mocktest[id];
         });
     }
+    // Đề mới (có biểu đồ) ghi đè đề cùng số trong data_mocktest.js
+    if (typeof dataMocktestNew !== 'undefined') {
+        Object.keys(dataMocktestNew).forEach(id => { merged[id] = dataMocktestNew[id]; });
+    }
     Object.keys(merged).sort((a, b) => a - b).forEach(id => {
         const arr = merged[id];
         if (!Array.isArray(arr) || arr.length === 0) return;
@@ -161,8 +165,98 @@ function renderQuestions(qs) {
             </div>`).join('');
         return `<div class="question-box border border-gray-200 rounded-2xl p-5" id="qbox-${i}">
             <p class="font-semibold mb-3">Câu Đ/S ${nTf}. ${esc(q.text)}</p>
+            ${renderCharts(q.charts || (q.chart ? [q.chart] : []))}
             <div class="space-y-2">${rows}</div></div>`;
     }).join('');
+}
+
+
+/* ---------- 5b. VẼ BIỂU ĐỒ SVG (bar / stacked / line) ----------
+   spec = { kind, title, unit, categories:[], series:[{name, values:[]}], note } */
+const CHART_COLORS = ['#059669', '#2563eb', '#f59e0b', '#e11d48', '#7c3aed'];
+const fmtNum = (v) => Number(v).toLocaleString('vi-VN', { maximumFractionDigits: 1 });
+
+function niceTop(max) {
+    if (max <= 0) return { top: 1, step: 0.2 };
+    const raw = max / 5, mag = Math.pow(10, Math.floor(Math.log10(raw)));
+    const f = raw / mag, nf = f <= 1 ? 1 : f <= 2 ? 2 : f <= 2.5 ? 2.5 : f <= 5 ? 5 : 10;
+    const step = nf * mag;
+    return { top: step * Math.ceil(max / step - 1e-9), step };
+}
+
+function chartSVG(spec) {
+    const W = 640, H = 340, m = { l: 62, r: 18, t: 26, b: 62 };
+    const pw = W - m.l - m.r, ph = H - m.t - m.b;
+    const cats = spec.categories || [], series = spec.series || [], n = cats.length;
+    if (!n || !series.length) return '';
+    const kind = spec.kind || 'bar';
+    let maxV = 0;
+    if (kind === 'stacked') cats.forEach((_, i) => { maxV = Math.max(maxV, series.reduce((a, s) => a + s.values[i], 0)); });
+    else series.forEach(s => s.values.forEach(v => { maxV = Math.max(maxV, v); }));
+    const { top, step } = niceTop(maxV);
+    const y = (v) => m.t + ph - (v / top) * ph;
+    const gw = pw / n;
+    let g = '';
+    for (let v = 0; v <= top + 1e-9; v += step) {
+        g += `<line x1="${m.l}" x2="${W - m.r}" y1="${y(v)}" y2="${y(v)}" stroke="#e5e7eb"/>` +
+             `<text x="${m.l - 8}" y="${y(v) + 4}" text-anchor="end" font-size="11" fill="#6b7280">${fmtNum(v)}</text>`;
+    }
+    g += `<text x="6" y="14" text-anchor="start" font-size="11" font-weight="600" fill="#374151">Đơn vị: ${esc(spec.unit || '')}</text>`;
+    g += `<line x1="${m.l}" x2="${W - m.r}" y1="${y(0)}" y2="${y(0)}" stroke="#9ca3af"/>`;
+
+    cats.forEach((c, i) => {
+        g += `<text x="${m.l + gw * i + gw / 2}" y="${H - m.b + 18}" text-anchor="middle" font-size="12" fill="#374151">${esc(c)}</text>`;
+    });
+
+    if (kind === 'bar') {
+        const bw = (gw * 0.7) / series.length;
+        series.forEach((s, k) => s.values.forEach((v, i) => {
+            const x = m.l + gw * i + gw * 0.15 + bw * k;
+            g += `<rect x="${x}" y="${y(v)}" width="${bw - 2}" height="${y(0) - y(v)}" fill="${CHART_COLORS[k % 5]}" rx="2"/>` +
+                 `<text x="${x + (bw - 2) / 2}" y="${y(v) - 5}" text-anchor="middle" font-size="11" font-weight="600" fill="#111827">${fmtNum(v)}</text>`;
+        }));
+    } else if (kind === 'stacked') {
+        const bw = gw * 0.5;
+        cats.forEach((_, i) => {
+            let acc = 0;
+            series.forEach((s, k) => {
+                const v = s.values[i], x = m.l + gw * i + (gw - bw) / 2, y1 = y(acc + v), h = y(acc) - y1;
+                g += `<rect x="${x}" y="${y1}" width="${bw}" height="${h}" fill="${CHART_COLORS[k % 5]}"/>`;
+                if (h > 16) g += `<text x="${x + bw / 2}" y="${y1 + h / 2 + 4}" text-anchor="middle" font-size="11" font-weight="600" fill="#fff">${fmtNum(v)}</text>`;
+                acc += v;
+            });
+        });
+    } else if (kind === 'line') {
+        series.forEach((s, k) => {
+            const pts = s.values.map((v, i) => [m.l + gw * i + gw / 2, y(v)]);
+            g += `<polyline fill="none" stroke="${CHART_COLORS[k % 5]}" stroke-width="2.5" points="${pts.map(p => p.join(',')).join(' ')}"/>`;
+            pts.forEach((p, i) => {
+                g += `<circle cx="${p[0]}" cy="${p[1]}" r="4" fill="${CHART_COLORS[k % 5]}"/>` +
+                     `<text x="${p[0]}" y="${p[1] - 9}" text-anchor="middle" font-size="11" font-weight="600" fill="#111827">${fmtNum(s.values[i])}</text>`;
+            });
+        });
+    }
+
+    // Chú giải
+    if (series.length > 1 || kind === 'stacked') {
+        let lx = m.l;
+        series.forEach((s, k) => {
+            g += `<rect x="${lx}" y="${H - 18}" width="12" height="12" fill="${CHART_COLORS[k % 5]}" rx="2"/>` +
+                 `<text x="${lx + 17}" y="${H - 8}" font-size="11.5" fill="#374151">${esc(s.name)}</text>`;
+            lx += 40 + s.name.length * 6.4;
+        });
+    }
+    return `<svg viewBox="0 0 ${W} ${H}" class="w-full h-auto" role="img" aria-label="${esc(spec.title || 'Biểu đồ')}">${g}</svg>`;
+}
+
+function renderCharts(list) {
+    if (!list || !list.length) return '';
+    return list.map(spec => `
+        <figure class="my-4 p-3 bg-white border border-gray-200 rounded-xl overflow-x-auto">
+            <figcaption class="text-center font-semibold text-sm text-gray-800 mb-2">${esc(spec.title || '')}</figcaption>
+            <div style="min-width:480px">${chartSVG(spec)}</div>
+            ${spec.note ? `<p class="text-xs text-gray-500 italic mt-1 text-right">${esc(spec.note)}</p>` : ''}
+        </figure>`).join('');
 }
 
 /* ---------- 6. ĐỒNG HỒ ---------- */
