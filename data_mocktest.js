@@ -449,3 +449,297 @@ dataMocktest[9] = [
         { text: "d) (Vận dụng cao) Rừng ngập mặn ven biển không có tác dụng bảo vệ đê biển.", answer: false }
     ]}
 ];
+
+// Đề số 10: 18 câu MCQ + 4 câu T/F
+dataMocktest[10] = [
+    // ===== PHẦN 1: 18 câu trắc nghiệm =====
+    { type: 'mcq', text: "Tính chất nhiệt đới ẩm gió mùa của địa hình nước ta thể hiện rõ ở:", options: ["Xâm thực mạnh ở vùng đồi núi, bồi tụ nhanh ở đồng bằng hạ lưu.", "Địa hình băng hà phổ biến.", "Hoang mạc hoá diễn ra mạnh.", "Núi lửa hoạt động liên tục."], answer: 0 },
+    { type: 'mcq', text: "Hang Sơn Đoòng thuộc vườn quốc gia nào?", options: ["Cúc Phương.", "Bạch Mã.", "Phong Nha - Kẻ Bàng.", "Yok Đôn."], answer: 2 },
+    { type: 'mcq', text: "Vùng núi cao, đồ sộ nhất nước ta là:", options: ["Đông Bắc.", "Trường Sơn Bắc.", "Trường Sơn Nam.", "Tây Bắc."], answer: 3 },
+    { type: 'mcq', text: "Hai phụ lưu lớn của sông Hồng là:", options: ["Sông Mã và sông Cả.", "Sông Đà và sông Lô.", "Sông Ba và sông Đồng Nai.", "Sông Tiền và sông Hậu."], answer: 1 },
+    { type: 'mcq', text: "Mùa lũ ở các sông vùng Trung Bộ thường vào:", options: ["Thu - đông.", "Mùa xuân.", "Mùa hạ.", "Quanh năm."], answer: 0 },
+    { type: 'mcq', text: "Khi chảy vào nước ta, sông Mê Công tách thành hai nhánh chính là:", options: ["Sông Đà và sông Lô.", "Sông Mã và sông Chu.", "Sông Cả và sông La.", "Sông Tiền và sông Hậu."], answer: 3 },
+    { type: 'mcq', text: "Dân cư tập trung đông ở đồng bằng và ven biển chủ yếu do:", options: ["Địa hình hiểm trở.", "Thiếu nguồn nước.", "Điều kiện tự nhiên thuận lợi, canh tác lúa nước và giao thông thuận tiện.", "Khí hậu khắc nghiệt."], answer: 2 },
+    { type: 'mcq', text: "Vùng có mật độ dân số thấp nhất nước ta là:", options: ["Đồng bằng sông Hồng.", "Tây Nguyên.", "Đông Nam Bộ.", "Đồng bằng sông Cửu Long."], answer: 1 },
+    { type: 'mcq', text: "Tập trung dân cư quá đông ở các đô thị lớn gây ra hệ quả nào?", options: ["Áp lực lên hạ tầng, nhà ở, việc làm và môi trường.", "Thừa đất ở.", "Giảm ô nhiễm.", "Hết ùn tắc giao thông."], answer: 0 },
+    { type: 'mcq', text: "Cây lúa nước thích hợp với điều kiện:", options: ["Khô lạnh quanh năm.", "Đất cát hoang mạc.", "Nhiệt - ẩm cao, nhiều nước, đất phù sa.", "Núi cao băng giá."], answer: 2 },
+    { type: 'mcq', text: "Cây chè phát triển thuận lợi ở vùng có điều kiện:", options: ["Khí hậu nóng khô, đất mặn.", "Khí hậu mát, mưa nhiều, đất feralit trên đồi núi.", "Đồng bằng ngập nước.", "Hoang mạc."], answer: 1 },
+    { type: 'mcq', text: "Ba vụ lúa chính ở Đồng bằng sông Cửu Long là:", options: ["Vụ đông, vụ xuân, vụ mùa.", "Vụ ba, vụ bốn, vụ năm.", "Chỉ có vụ mùa.", "Đông xuân, hè thu và thu đông."], answer: 3 },
+    { type: 'mcq', text: "Chăn nuôi bò sữa phát triển nhiều ở ven các đô thị lớn chủ yếu vì:", options: ["Gần thị trường tiêu thụ sữa tươi lớn.", "Thiếu đồng cỏ.", "Không cần vận chuyển.", "Không có nhu cầu về sữa."], answer: 0 },
+    { type: 'mcq', text: "Nuôi trồng thuỷ sản tăng nhanh nhờ:", options: ["Giảm diện tích mặt nước.", "Mở rộng diện tích nuôi, áp dụng kĩ thuật mới và nhu cầu thị trường lớn.", "Không có thị trường tiêu thụ.", "Cạn kiệt nguồn giống."], answer: 1 },
+    { type: 'mcq', text: "Làng nghề thủ công nổi tiếng của Đồng bằng sông Hồng là:", options: ["Dệt thổ cẩm Tây Nguyên.", "Làm nước mắm Phú Quốc.", "Gốm Bát Tràng, lụa Vạn Phúc.", "Đan lát Cà Mau."], answer: 2 },
+    { type: 'mcq', text: "Mỏ sắt lớn ở Bắc Trung Bộ là:", options: ["Tòng Bá.", "Quỳ Hợp.", "Sinh Quyền.", "Thạch Khê."], answer: 3 },
+    { type: 'mcq', text: "Bắc Trung Bộ có vị trí là cầu nối giữa:", options: ["Miền Bắc và miền Nam, giữa Việt Nam và Lào.", "Đông Nam Á và Nam Á.", "Việt Nam và Nhật Bản.", "Tây Nguyên và Đồng bằng sông Cửu Long."], answer: 0 },
+    { type: 'mcq', text: "Cố đô Huế thu hút khách du lịch chủ yếu bởi loại hình:", options: ["Nghỉ dưỡng núi.", "Thể thao mạo hiểm.", "Du lịch văn hoá - lịch sử.", "Du lịch hoang mạc."], answer: 2 },
+
+    // ===== PHẦN 2: 4 câu Đúng/Sai =====
+    { type: 'tf', text: "Câu 1. Về địa hình và sông ngòi nước ta:", options: [
+        { text: "a) (Nhận biết) Địa hình xâm thực diễn ra mạnh ở vùng đồi núi.", answer: true },
+        { text: "b) (Thông hiểu) Sông Hồng có hai phụ lưu lớn là sông Đà và sông Lô.", answer: true },
+        { text: "c) (Vận dụng) Khi chảy vào nước ta, sông Mê Công tách thành sông Tiền và sông Hậu.", answer: true },
+        { text: "d) (Vận dụng cao) Sông ở Trung Bộ có lũ lên chậm và kéo dài do lưu vực rộng.", answer: false }
+    ]},
+    { type: 'tf', text: "Câu 2. Về phân bố dân cư nước ta:", options: [
+        { text: "a) (Nhận biết) Dân cư tập trung đông ở đồng bằng và ven biển.", answer: true },
+        { text: "b) (Thông hiểu) Tây Nguyên có mật độ dân số thấp so với cả nước.", answer: true },
+        { text: "c) (Vận dụng) Công nghiệp và dịch vụ phát triển ở đô thị thu hút di cư lao động.", answer: true },
+        { text: "d) (Vận dụng cao) Phân bố lại dân cư hợp lí không cần gắn với phân bố lao động và việc làm.", answer: false }
+    ]},
+    { type: 'tf', text: "Câu 3. Về cây lương thực và cây công nghiệp:", options: [
+        { text: "a) (Nhận biết) Lúa nước thích hợp với điều kiện nhiệt - ẩm cao và đất phù sa.", answer: true },
+        { text: "b) (Thông hiểu) Chè được trồng nhiều ở vùng đồi núi có khí hậu mát.", answer: true },
+        { text: "c) (Vận dụng) Vùng chuyên canh gắn với công nghiệp chế biến giúp nâng cao giá trị nông sản.", answer: true },
+        { text: "d) (Vận dụng cao) Cây công nghiệp lâu năm có chu kì kinh doanh ngắn, hoàn vốn nhanh như cây hằng năm.", answer: false }
+    ]},
+    { type: 'tf', text: "Câu 4. Cho bảng số liệu giả định về lúa của một vùng: Năm 2010: sản lượng 20,0 triệu tấn, diện tích gieo trồng 4,0 triệu ha. Năm 2020: sản lượng 24,0 triệu tấn, diện tích gieo trồng 3,0 triệu ha. Nhận định sau đúng hay sai?", options: [
+        { text: "a) (Nhận biết) Sản lượng lúa năm 2020 cao hơn năm 2010.", answer: true },
+        { text: "b) (Thông hiểu) Diện tích gieo trồng lúa năm 2020 thấp hơn năm 2010.", answer: true },
+        { text: "c) (Vận dụng) Năng suất lúa năm 2020 là 8,0 tấn/ha.", answer: true },
+        { text: "d) (Vận dụng cao) Năng suất lúa năm 2020 tăng 50% so với năm 2010.", answer: false }
+    ]}
+];
+
+// Đề số 11: 18 câu MCQ + 4 câu T/F
+dataMocktest[11] = [
+    // ===== PHẦN 1: 18 câu trắc nghiệm =====
+    { type: 'mcq', text: "Công nghiệp luyện kim đen ở nước ta phát triển còn hạn chế chủ yếu do:", options: ["Thiếu lao động.", "Không có thị trường.", "Thiếu điện hoàn toàn.", "Thiếu vốn, công nghệ và nguồn nguyên liệu, nhiên liệu trong nước còn hạn chế."], answer: 3 },
+    { type: 'mcq', text: "Trung tâm công nghiệp nào sau đây thuộc Đồng bằng sông Hồng?", options: ["Biên Hoà.", "Hải Phòng.", "Vũng Tàu.", "Cần Thơ."], answer: 1 },
+    { type: 'mcq', text: "Trung tâm công nghiệp lớn nhất của Đồng bằng sông Cửu Long là:", options: ["Biên Hoà.", "Thủ Dầu Một.", "Vũng Tàu.", "Cần Thơ."], answer: 3 },
+    { type: 'mcq', text: "Hồ thuỷ điện Trị An thuộc vùng kinh tế nào?", options: ["Đông Nam Bộ.", "Tây Nguyên.", "Bắc Trung Bộ.", "Trung du và miền núi Bắc Bộ."], answer: 0 },
+    { type: 'mcq', text: "Khai thác bô-xit ở Tây Nguyên cần đặc biệt chú ý đến:", options: ["Phá rừng để mở rộng nhanh.", "Xả thải trực tiếp ra sông.", "Bảo vệ rừng, nguồn nước và môi trường.", "Bỏ qua quy hoạch."], answer: 2 },
+    { type: 'mcq', text: "Dịch vụ logistics tập trung nhiều ở:", options: ["Vùng núi cao hẻo lánh.", "Các vùng có cảng biển và đô thị lớn như Đông Nam Bộ, Đồng bằng sông Hồng.", "Hải đảo xa bờ.", "Vùng thưa dân."], answer: 1 },
+    { type: 'mcq', text: "Du lịch cộng đồng ở các bản làng miền núi dựa chủ yếu vào:", options: ["Công nghiệp nặng.", "Khai thác khoáng sản.", "Văn hoá, ẩm thực, sinh hoạt bản địa và cảnh quan.", "Vận tải biển."], answer: 2 },
+    { type: 'mcq', text: "Tuyến cao tốc Bắc - Nam phía Đông góp phần:", options: ["Giảm thời gian vận chuyển và tăng liên kết vùng.", "Giảm lưu thông hàng hoá.", "Thu hẹp thị trường.", "Tăng chi phí logistics."], answer: 0 },
+    { type: 'mcq', text: "Cửa khẩu quốc tế Móng Cái thuộc tỉnh nào?", options: ["Lạng Sơn.", "Cao Bằng.", "Lào Cai.", "Quảng Ninh."], answer: 3 },
+    { type: 'mcq', text: "Nông nghiệp Đông Nam Bộ có đặc điểm nổi bật là:", options: ["Chuyên canh cây công nghiệp lâu năm, cây ăn quả và chăn nuôi.", "Trồng lúa mì.", "Nuôi bò sữa ôn đới.", "Trồng chè ôn đới."], answer: 0 },
+    { type: 'mcq', text: "Tây Nguyên và Đông Nam Bộ gắn bó kinh tế chặt chẽ nhờ:", options: ["Không có giao thông kết nối.", "Cung cấp nguyên liệu cây công nghiệp, lao động và tiêu thụ sản phẩm cho nhau.", "Cùng giáp biển.", "Cùng có đồng bằng châu thổ."], answer: 1 },
+    { type: 'mcq', text: "Khu kinh tế ven biển có chức năng chủ yếu là:", options: ["Chỉ phục vụ nông nghiệp.", "Thu hút đầu tư, phát triển công nghiệp, cảng biển và dịch vụ.", "Chỉ bảo tồn rừng.", "Chỉ sản xuất muối."], answer: 1 },
+    { type: 'mcq', text: "Ngành thuỷ sản nước ta đang chuyển hướng sang:", options: ["Chỉ khai thác ven bờ.", "Chỉ nuôi nhỏ lẻ.", "Kết hợp khai thác bền vững và nuôi trồng quy mô lớn.", "Bỏ chế biến."], answer: 2 },
+    { type: 'mcq', text: "Cây cao su ở Đông Nam Bộ thuận lợi nhờ:", options: ["Đất xám, đất badan; khí hậu nóng ẩm, ít bão.", "Khí hậu lạnh.", "Đất mặn.", "Địa hình núi cao."], answer: 0 },
+    { type: 'mcq', text: "Cây điều tập trung nhiều nhất ở vùng:", options: ["Đồng bằng sông Hồng.", "Bắc Trung Bộ.", "Đông Nam Bộ.", "Tây Bắc."], answer: 2 },
+    { type: 'mcq', text: "Chợ nổi Cái Răng thuộc thành phố nào?", options: ["Cà Mau.", "Bến Tre.", "Mỹ Tho.", "Cần Thơ."], answer: 3 },
+    { type: 'mcq', text: "Phát triển điện gió, điện mặt trời ở Ninh Thuận, Bình Thuận chủ yếu dựa vào:", options: ["Số giờ nắng nhiều và gió mạnh.", "Mưa lớn quanh năm.", "Rừng rậm.", "Băng tuyết."], answer: 0 },
+    { type: 'mcq', text: "Giải pháp giảm ô nhiễm không khí ở đô thị là:", options: ["Tăng số lượng xe cá nhân.", "Giảm cây xanh.", "Phát triển giao thông công cộng, kiểm soát khí thải và tăng cây xanh.", "Đốt rác ngoài trời."], answer: 2 },
+
+    // ===== PHẦN 2: 4 câu Đúng/Sai =====
+    { type: 'tf', text: "Câu 1. Về công nghiệp luyện kim và công nghiệp nặng:", options: [
+        { text: "a) (Nhận biết) Công nghiệp luyện kim đen cần nhiều vốn, công nghệ và nguyên liệu.", answer: true },
+        { text: "b) (Thông hiểu) Nhà máy luyện thép thường gắn với nguồn nguyên liệu, nhiên liệu hoặc cảng biển.", answer: true },
+        { text: "c) (Vận dụng) Mỏ sắt Thạch Khê có trữ lượng lớn nhưng việc khai thác còn gặp nhiều khó khăn.", answer: true },
+        { text: "d) (Vận dụng cao) Nước ta đã tự túc hoàn toàn nguyên liệu cho ngành luyện kim.", answer: false }
+    ]},
+    { type: 'tf', text: "Câu 2. Về Đông Nam Bộ và Tây Nguyên:", options: [
+        { text: "a) (Nhận biết) Đông Nam Bộ là vùng trồng nhiều cao su, điều và hồ tiêu.", answer: true },
+        { text: "b) (Thông hiểu) Tây Nguyên có diện tích cà phê lớn.", answer: true },
+        { text: "c) (Vận dụng) Hai vùng có mối liên hệ chặt chẽ về nguyên liệu, lao động và thị trường.", answer: true },
+        { text: "d) (Vận dụng cao) Tây Nguyên có hệ thống cảng biển lớn nhất cả nước.", answer: false }
+    ]},
+    { type: 'tf', text: "Câu 3. Về du lịch nước ta:", options: [
+        { text: "a) (Nhận biết) Du lịch cộng đồng dựa vào văn hoá và sinh hoạt bản địa.", answer: true },
+        { text: "b) (Thông hiểu) Huế và Hội An là những điểm đến di sản văn hoá nổi tiếng.", answer: true },
+        { text: "c) (Vận dụng) Phát triển du lịch cần cân bằng lợi ích kinh tế với bảo tồn văn hoá và môi trường.", answer: true },
+        { text: "d) (Vận dụng cao) Du lịch không cần bảo tồn văn hoá vì chỉ cần tối đa hoá lợi nhuận.", answer: false }
+    ]},
+    { type: 'tf', text: "Câu 4. Cho bảng số liệu giả định về kim ngạch xuất khẩu của một nước (tỉ USD): Năm 2018: tổng 240, trong đó hàng công nghiệp chế biến 192. Năm 2022: tổng 370, trong đó hàng công nghiệp chế biến 315. Nhận định sau đúng hay sai?", options: [
+        { text: "a) (Nhận biết) Tổng kim ngạch xuất khẩu năm 2022 lớn hơn năm 2018.", answer: true },
+        { text: "b) (Thông hiểu) Tỉ trọng hàng công nghiệp chế biến năm 2018 là 80%.", answer: true },
+        { text: "c) (Vận dụng) Tỉ trọng hàng công nghiệp chế biến năm 2022 cao hơn năm 2018.", answer: true },
+        { text: "d) (Vận dụng cao) Tổng kim ngạch xuất khẩu năm 2022 gấp hơn 2 lần năm 2018.", answer: false }
+    ]}
+];
+
+// Đề số 12: 18 câu MCQ + 4 câu T/F
+dataMocktest[12] = [
+    // ===== PHẦN 1: 18 câu trắc nghiệm =====
+    { type: 'mcq', text: "Việt Nam thuận lợi phát triển cảng biển chủ yếu do:", options: ["Đường bờ biển dài, nhiều vũng vịnh kín gió, gần tuyến hàng hải quốc tế.", "Bờ biển thẳng, không có vịnh.", "Nằm xa biển.", "Không có sông lớn."], answer: 0 },
+    { type: 'mcq', text: "Xâm nhập mặn ở Đồng bằng sông Cửu Long thường cao điểm vào:", options: ["Mùa mưa lũ.", "Mùa khô (khoảng tháng 12 đến tháng 4).", "Mùa xuân ẩm.", "Quanh năm như nhau."], answer: 1 },
+    { type: 'mcq', text: "Gió mùa Đông Bắc suy yếu dần khi đi về phía nam chủ yếu do:", options: ["Nhiệt độ miền Nam thấp.", "Có nhiều hồ lớn.", "Dãy Bạch Mã và khoảng cách xa trung tâm phát sinh gió.", "Địa hình toàn đồng bằng."], answer: 2 },
+    { type: 'mcq', text: "Hiện tượng El Niño thường gây ra ở nước ta:", options: ["Mưa lớn kéo dài, lũ lụt.", "Rét đậm kéo dài.", "Nắng nóng, hạn hán, thiếu nước, xâm nhập mặn.", "Tuyết rơi."], answer: 2 },
+    { type: 'mcq', text: "Hiện tượng La Niña thường làm cho nước ta:", options: ["Hạn hán nghiêm trọng.", "Mưa nhiều, bão và lũ lụt có xu hướng gia tăng.", "Không có mưa.", "Nóng như hoang mạc."], answer: 1 },
+    { type: 'mcq', text: "Độ che phủ rừng là tỉ lệ giữa:", options: ["Diện tích rừng và dân số.", "Diện tích đất nông nghiệp và diện tích rừng.", "Sản lượng gỗ và diện tích rừng.", "Diện tích rừng và diện tích đất tự nhiên."], answer: 3 },
+    { type: 'mcq', text: "Bình quân diện tích đất nông nghiệp theo đầu người thấp gây khó khăn chủ yếu cho:", options: ["Phát triển du lịch biển.", "Khai thác dầu khí.", "Mở rộng quy mô sản xuất và cơ giới hoá nông nghiệp.", "Xây dựng cảng biển."], answer: 2 },
+    { type: 'mcq', text: "Công nghiệp hỗ trợ có vai trò chủ yếu là:", options: ["Cung cấp linh kiện, nguyên phụ liệu cho các ngành công nghiệp chính.", "Thay thế hoàn toàn công nghiệp chính.", "Chỉ phục vụ nông nghiệp.", "Giảm năng suất lao động."], answer: 0 },
+    { type: 'mcq', text: "Tham gia chuỗi giá trị toàn cầu đòi hỏi doanh nghiệp phải:", options: ["Hạ thấp tiêu chuẩn.", "Bỏ qua yêu cầu kĩ thuật.", "Chỉ bán trong nội địa.", "Đáp ứng tiêu chuẩn chất lượng và có lao động tay nghề cao."], answer: 3 },
+    { type: 'mcq', text: "Mục tiêu của phát triển kinh tế biển xanh là:", options: ["Khai thác cạn kiệt hải sản.", "Khai thác bền vững, giảm ô nhiễm và bảo vệ hệ sinh thái biển.", "Xả thải ra biển.", "Ngừng mọi hoạt động trên biển."], answer: 1 },
+    { type: 'mcq', text: "Kinh tế số tác động mạnh nhất đến lĩnh vực dịch vụ thông qua:", options: ["Giảm sử dụng Internet.", "Hạn chế giao dịch trực tuyến.", "Tăng chi phí giao dịch.", "Thương mại điện tử và thanh toán không dùng tiền mặt."], answer: 3 },
+    { type: 'mcq', text: "Vịnh nước sâu nổi tiếng ở Nam Trung Bộ, thuận lợi xây dựng cảng là:", options: ["Hạ Long.", "Vân Phong.", "Bái Tử Long.", "Rạch Giá."], answer: 1 },
+    { type: 'mcq', text: "Vấn đề cấp thiết nhất đối với nông nghiệp ở Đồng bằng sông Cửu Long hiện nay là:", options: ["Thích ứng biến đổi khí hậu, xâm nhập mặn và sạt lở.", "Thiếu nhiệt độ.", "Thiếu đất phù sa tuyệt đối.", "Không có kênh rạch."], answer: 0 },
+    { type: 'mcq', text: "Mất rừng ở Tây Nguyên dẫn tới hệ quả nào sau đây?", options: ["Tăng đa dạng sinh học.", "Suy giảm nguồn nước, đa dạng sinh học và gia tăng xói mòn.", "Giảm thiên tai.", "Tăng độ phì tự nhiên."], answer: 1 },
+    { type: 'mcq', text: "Giải pháp phát triển bền vững ở vùng núi là:", options: ["Chặt phá rừng lấy đất.", "Du canh du cư.", "Giao đất giao rừng, phát triển sinh kế bền vững và trồng rừng.", "Bỏ quy hoạch."], answer: 2 },
+    { type: 'mcq', text: "Tăng cường liên kết vùng nhằm:", options: ["Phát huy lợi thế, tránh trùng lặp và nâng cao hiệu quả.", "Tăng trùng lặp ngành nghề.", "Hạn chế trao đổi.", "Đóng cửa thị trường."], answer: 0 },
+    { type: 'mcq', text: "Đô thị thông minh có đặc điểm nổi bật là:", options: ["Quản lí thủ công hoàn toàn.", "Không dùng dữ liệu.", "Hạn chế kết nối.", "Ứng dụng công nghệ số trong quản lí giao thông, môi trường và dịch vụ công."], answer: 3 },
+    { type: 'mcq', text: "Ý nghĩa lớn nhất của bảo tồn đa dạng sinh học là:", options: ["Giảm nguồn gen.", "Tăng ô nhiễm.", "Duy trì cân bằng sinh thái và nguồn gen cho phát triển lâu dài.", "Giảm diện tích rừng."], answer: 2 },
+
+    // ===== PHẦN 2: 4 câu Đúng/Sai =====
+    { type: 'tf', text: "Câu 1. Về các hiện tượng khí hậu cực đoan:", options: [
+        { text: "a) (Nhận biết) El Niño thường liên quan đến hạn hán và thiếu nước.", answer: true },
+        { text: "b) (Thông hiểu) La Niña thường kéo theo mưa nhiều và nguy cơ lũ lụt.", answer: true },
+        { text: "c) (Vận dụng) Xâm nhập mặn ở Đồng bằng sông Cửu Long cao điểm vào mùa khô.", answer: true },
+        { text: "d) (Vận dụng cao) El Niño chỉ ảnh hưởng đến khí hậu mà không tác động đến sản xuất nông nghiệp.", answer: false }
+    ]},
+    { type: 'tf', text: "Câu 2. Về công nghiệp hỗ trợ và chuỗi giá trị:", options: [
+        { text: "a) (Nhận biết) Công nghiệp hỗ trợ cung cấp linh kiện, nguyên phụ liệu cho công nghiệp chính.", answer: true },
+        { text: "b) (Thông hiểu) Tham gia chuỗi giá trị toàn cầu đòi hỏi tiêu chuẩn kĩ thuật và chất lượng cao.", answer: true },
+        { text: "c) (Vận dụng) Phát triển công nghiệp hỗ trợ giúp giảm phụ thuộc vào linh kiện nhập khẩu.", answer: true },
+        { text: "d) (Vận dụng cao) Chỉ gia công đơn giản luôn mang lại giá trị gia tăng cao nhất.", answer: false }
+    ]},
+    { type: 'tf', text: "Câu 3. Về đô thị và kinh tế số:", options: [
+        { text: "a) (Nhận biết) Thương mại điện tử và thanh toán số phát triển nhờ hạ tầng Internet.", answer: true },
+        { text: "b) (Thông hiểu) Đô thị thông minh ứng dụng công nghệ số trong quản lí và vận hành.", answer: true },
+        { text: "c) (Vận dụng) Chuyển đổi số có thể giúp giảm chi phí giao dịch.", answer: true },
+        { text: "d) (Vận dụng cao) Chuyển đổi số chỉ có lợi cho đô thị, không mang lại lợi ích gì cho nông thôn.", answer: false }
+    ]},
+    { type: 'tf', text: "Câu 4. Cho bảng số liệu giả định về rừng của hai vùng M và N: Vùng M có diện tích tự nhiên 5,0 triệu ha, diện tích rừng 2,5 triệu ha. Vùng N có diện tích tự nhiên 2,0 triệu ha, diện tích rừng 0,5 triệu ha. Nhận định sau đúng hay sai?", options: [
+        { text: "a) (Nhận biết) Diện tích rừng của vùng M lớn hơn vùng N.", answer: true },
+        { text: "b) (Thông hiểu) Độ che phủ rừng của vùng M là 50%.", answer: true },
+        { text: "c) (Vận dụng) Độ che phủ rừng của vùng M cao gấp 2 lần vùng N.", answer: true },
+        { text: "d) (Vận dụng cao) Tổng diện tích rừng của hai vùng chiếm 50% tổng diện tích tự nhiên của hai vùng.", answer: false }
+    ]}
+];
+
+// Đề số 13: 18 câu MCQ + 4 câu T/F
+dataMocktest[13] = [
+    // ===== PHẦN 1: 18 câu trắc nghiệm =====
+    { type: 'mcq', text: "Trong vùng đặc quyền kinh tế, nước ta có quyền chủ quyền về:", options: ["Chỉ quyền đi lại tự do, không được khai thác.", "Thăm dò, khai thác, bảo vệ và quản lí tài nguyên thiên nhiên.", "Cấm mọi tàu thuyền nước ngoài đi qua.", "Không có quyền nào."], answer: 1 },
+    { type: 'mcq', text: "Các hệ sinh thái ven biển phổ biến ở nước ta là:", options: ["Rừng ngập mặn, rạn san hô, thảm cỏ biển.", "Hoang mạc, thảo nguyên, băng hà.", "Rừng lá kim, đài nguyên.", "Xavan khô hạn."], answer: 0 },
+    { type: 'mcq', text: "Phần lãnh thổ phía Nam của nước ta có khí hậu:", options: ["Ôn đới gió mùa.", "Hàn đới.", "Cận xích đạo gió mùa.", "Hoang mạc."], answer: 2 },
+    { type: 'mcq', text: "Nhiệt độ trung bình năm cao nhất thường ở:", options: ["Vùng núi Hoàng Liên Sơn.", "Vùng núi Đông Bắc.", "Cao nguyên Mộc Châu.", "Đồng bằng Nam Bộ."], answer: 3 },
+    { type: 'mcq', text: "Lượng mưa trung bình năm lớn thường gặp ở:", options: ["Sườn đón gió của các khối núi cao.", "Thung lũng khuất gió.", "Vùng nội địa sâu, khuất gió.", "Vùng hoang mạc."], answer: 0 },
+    { type: 'mcq', text: "Lao động nước ta tập trung nhiều nhất ở khu vực kinh tế:", options: ["Nhà nước.", "Ngoài Nhà nước.", "Có vốn đầu tư nước ngoài.", "Liên doanh nước ngoài."], answer: 1 },
+    { type: 'mcq', text: "Tỉ lệ lao động qua đào tạo tăng chủ yếu nhờ:", options: ["Giảm đầu tư giáo dục.", "Hạn chế đào tạo nghề.", "Mở rộng đào tạo nghề, giáo dục và nhu cầu của thị trường lao động.", "Giảm nhu cầu tuyển dụng."], answer: 2 },
+    { type: 'mcq', text: "Việc đẩy mạnh xuất khẩu lao động nhằm mục đích chính là:", options: ["Tăng số người thất nghiệp.", "Giảm thu nhập.", "Giảm đầu tư giáo dục.", "Giải quyết việc làm, tăng thu nhập, nâng cao tay nghề."], answer: 3 },
+    { type: 'mcq', text: "Cây trồng nào sau đây thuộc nhóm cây công nghiệp hằng năm?", options: ["Mía.", "Cà phê.", "Cao su.", "Hồ tiêu."], answer: 0 },
+    { type: 'mcq', text: "Cây ăn quả cận nhiệt là đặc sản của vùng núi Tây Bắc là:", options: ["Sầu riêng.", "Mận, đào, lê.", "Chôm chôm.", "Dừa."], answer: 1 },
+    { type: 'mcq', text: "Mô hình nông - lâm kết hợp ở miền núi có lợi ích:", options: ["Làm tăng xói mòn đất.", "Giảm độ che phủ rừng.", "Bảo vệ đất, tăng thu nhập và duy trì độ che phủ rừng.", "Giảm đa dạng sinh kế."], answer: 2 },
+    { type: 'mcq', text: "Công nghiệp chế biến thuỷ sản tập trung nhiều ở:", options: ["Vùng núi cao.", "Vùng thưa dân nội địa.", "Vùng hoang mạc.", "Đồng bằng sông Cửu Long và Duyên hải."], answer: 3 },
+    { type: 'mcq', text: "Công nghiệp cơ khí - điện tử thường tập trung ở các đô thị lớn vì:", options: ["Gần thị trường, có lao động kĩ thuật và hạ tầng tốt.", "Thiếu lao động.", "Thiếu hạ tầng.", "Xa thị trường."], answer: 0 },
+    { type: 'mcq', text: "Cảng hàng không quốc tế lớn nhất ở miền Trung là:", options: ["Phú Bài.", "Đà Nẵng.", "Cam Ranh.", "Phù Cát."], answer: 1 },
+    { type: 'mcq', text: "Phát triển giao thông công cộng ở đô thị lớn nhằm:", options: ["Tăng ùn tắc.", "Tăng ô nhiễm.", "Giảm ùn tắc, giảm ô nhiễm và nâng cao chất lượng cuộc sống.", "Giảm nhu cầu đi lại."], answer: 2 },
+    { type: 'mcq', text: "Quần thể danh thắng Tràng An thuộc tỉnh nào?", options: ["Quảng Ninh.", "Thanh Hoá.", "Hà Tĩnh.", "Ninh Bình."], answer: 3 },
+    { type: 'mcq', text: "Để thu hút đầu tư vào Tây Nguyên, cơ sở hạ tầng cần ưu tiên là:", options: ["Giảm số lượng đường giao thông.", "Hệ thống giao thông kết nối với các vùng và cảng biển.", "Bỏ điện lưới.", "Bỏ viễn thông."], answer: 1 },
+    { type: 'mcq', text: "Yếu tố then chốt thúc đẩy chuyển dịch cơ cấu kinh tế theo hướng hiện đại là:", options: ["Giảm đầu tư nghiên cứu.", "Hạn chế công nghệ.", "Ứng dụng khoa học - công nghệ và đổi mới sáng tạo.", "Bảo hộ tuyệt đối thị trường."], answer: 2 },
+
+    // ===== PHẦN 2: 4 câu Đúng/Sai =====
+    { type: 'tf', text: "Câu 1. Về vùng biển và hệ sinh thái ven biển:", options: [
+        { text: "a) (Nhận biết) Trong vùng đặc quyền kinh tế, nước ta có quyền chủ quyền về thăm dò, khai thác và quản lí tài nguyên.", answer: true },
+        { text: "b) (Thông hiểu) Rừng ngập mặn và rạn san hô là các hệ sinh thái ven biển quan trọng.", answer: true },
+        { text: "c) (Vận dụng) Rạn san hô là nơi cư trú và sinh sản của nhiều loài hải sản.", answer: true },
+        { text: "d) (Vận dụng cao) Phá rừng ngập mặn để nuôi tôm không ảnh hưởng đến khả năng bảo vệ bờ biển.", answer: false }
+    ]},
+    { type: 'tf', text: "Câu 2. Về khí hậu nước ta:", options: [
+        { text: "a) (Nhận biết) Phần lãnh thổ phía Nam có khí hậu cận xích đạo gió mùa.", answer: true },
+        { text: "b) (Thông hiểu) Sườn đón gió của các khối núi cao thường có lượng mưa lớn hơn.", answer: true },
+        { text: "c) (Vận dụng) Nam Bộ có nền nhiệt cao quanh năm và biên độ nhiệt năm nhỏ.", answer: true },
+        { text: "d) (Vận dụng cao) Vùng núi Hoàng Liên Sơn có nhiệt độ trung bình năm cao hơn đồng bằng Nam Bộ.", answer: false }
+    ]},
+    { type: 'tf', text: "Câu 3. Về lao động nước ta:", options: [
+        { text: "a) (Nhận biết) Lao động nước ta tập trung nhiều nhất ở khu vực ngoài Nhà nước.", answer: true },
+        { text: "b) (Thông hiểu) Tỉ lệ lao động qua đào tạo có xu hướng tăng.", answer: true },
+        { text: "c) (Vận dụng) Xuất khẩu lao động góp phần giải quyết việc làm và nâng cao tay nghề.", answer: true },
+        { text: "d) (Vận dụng cao) Nước ta đã hết tình trạng thiếu lao động chất lượng cao.", answer: false }
+    ]},
+    { type: 'tf', text: "Câu 4. Cho bảng số liệu giả định về dân số (triệu người) của một vùng: Năm 2015: tổng số 18,0, thành thị 8,1. Năm 2022: tổng số 20,0, thành thị 10,0. Nhận định sau đúng hay sai?", options: [
+        { text: "a) (Nhận biết) Dân số của vùng năm 2022 lớn hơn năm 2015.", answer: true },
+        { text: "b) (Thông hiểu) Tỉ lệ dân thành thị năm 2015 là 45%.", answer: true },
+        { text: "c) (Vận dụng) Tỉ lệ dân thành thị năm 2022 là 50%.", answer: true },
+        { text: "d) (Vận dụng cao) Dân số thành thị tăng thêm 3,0 triệu người trong giai đoạn 2015 - 2022.", answer: false }
+    ]}
+];
+
+// Đề số 14: 18 câu MCQ + 4 câu T/F
+dataMocktest[14] = [
+    // ===== PHẦN 1: 18 câu trắc nghiệm =====
+    { type: 'mcq', text: "Vùng nào sau đây có đường biên giới trên đất liền với cả Trung Quốc và Lào?", options: ["Bắc Trung Bộ.", "Trung du và miền núi Bắc Bộ.", "Đồng bằng sông Hồng.", "Tây Nguyên."], answer: 1 },
+    { type: 'mcq', text: "Cửa khẩu quốc tế Lao Bảo nằm trên biên giới Việt Nam với:", options: ["Lào.", "Trung Quốc.", "Cam-pu-chia.", "Thái Lan."], answer: 0 },
+    { type: 'mcq', text: "Vùng nào sau đây giáp cả Lào và Cam-pu-chia?", options: ["Bắc Trung Bộ.", "Đông Nam Bộ.", "Tây Nguyên.", "Đồng bằng sông Cửu Long."], answer: 2 },
+    { type: 'mcq', text: "Tiểu vùng nào của Trung du và miền núi Bắc Bộ có thế mạnh khai thác than?", options: ["Tây Bắc.", "Đồng bằng ven biển.", "Cao nguyên Tây Nguyên.", "Đông Bắc."], answer: 3 },
+    { type: 'mcq', text: "Thế mạnh nổi bật của tiểu vùng Tây Bắc là:", options: ["Công nghiệp ô tô.", "Thuỷ điện, chăn nuôi gia súc, lâm nghiệp và du lịch.", "Nuôi tôm quy mô lớn.", "Khai thác dầu khí."], answer: 1 },
+    { type: 'mcq', text: "Đánh bắt và nuôi trồng thuỷ sản ở Duyên hải Nam Trung Bộ thuận lợi nhờ:", options: ["Bờ biển dài, nhiều vũng vịnh và ngư trường lớn.", "Không có đường bờ biển.", "Thiếu nước mặn.", "Địa hình toàn núi cao."], answer: 0 },
+    { type: 'mcq', text: "Thiên tai gây khó khăn thường xuyên cho Bắc Trung Bộ là:", options: ["Tuyết rơi.", "Động đất mạnh thường xuyên.", "Bão, lũ, hạn hán và gió Tây khô nóng.", "Sóng thần hằng năm."], answer: 2 },
+    { type: 'mcq', text: "Đa dạng hoá cơ cấu cây trồng ở Tây Nguyên nhằm:", options: ["Giảm rủi ro thị trường, nâng cao giá trị và bảo vệ đất.", "Chỉ trồng một loại cây.", "Giảm thu nhập.", "Tăng phá rừng."], answer: 0 },
+    { type: 'mcq', text: "Tây Nguyên có tiềm năng thuỷ điện lớn nhờ:", options: ["Sông ngòi cạn nước quanh năm.", "Địa hình bằng phẳng.", "Ít mưa quanh năm.", "Sông có độ dốc lớn, lưu lượng nước dồi dào trên cao nguyên."], answer: 3 },
+    { type: 'mcq', text: "Lợi thế nổi bật về vị trí của Đông Nam Bộ là:", options: ["Nằm sâu nội địa, xa biển.", "Xa các tuyến hàng hải quốc tế.", "Giáp Tây Nguyên, Duyên hải và Đồng bằng sông Cửu Long, có cửa ngõ ra Biển Đông.", "Không giáp vùng nào."], answer: 2 },
+    { type: 'mcq', text: "Hồ Dầu Tiếng ở Đông Nam Bộ có vai trò chủ yếu là:", options: ["Làm giảm mực nước ngầm.", "Cung cấp nước tưới, điều tiết nước và nuôi trồng thuỷ sản.", "Chỉ để khai thác than.", "Gây khô hạn."], answer: 1 },
+    { type: 'mcq', text: "Địa hình Đồng bằng sông Cửu Long có đặc điểm nổi bật là:", options: ["Thấp, bằng phẳng, nhiều vùng trũng và kênh rạch chằng chịt.", "Cao, nhiều đồi núi.", "Có nhiều hang động caxtơ.", "Có nhiều núi lửa."], answer: 0 },
+    { type: 'mcq', text: "Rừng ở Đồng bằng sông Cửu Long chủ yếu là:", options: ["Rừng lá kim ôn đới.", "Rừng thưa khô hạn.", "Rừng ngập mặn và rừng tràm.", "Rừng ôn đới núi cao."], answer: 2 },
+    { type: 'mcq', text: "Hạn chế lớn của Duyên hải Nam Trung Bộ là:", options: ["Đồng bằng rộng, đất rất màu mỡ.", "Ít thiên tai.", "Nguồn nước dồi dào quanh năm.", "Đồng bằng nhỏ hẹp, đất kém màu mỡ và thiên tai thường xuyên."], answer: 3 },
+    { type: 'mcq', text: "Trung du và miền núi Bắc Bộ thuận lợi nuôi trâu, bò chủ yếu nhờ:", options: ["Không có đồng cỏ.", "Nhiều đồng cỏ trên đồi núi và cao nguyên.", "Thiếu thức ăn.", "Khí hậu hoang mạc."], answer: 1 },
+    { type: 'mcq', text: "Du lịch ở Bắc Trung Bộ phát triển dựa vào:", options: ["Hoang mạc và băng tuyết.", "Chỉ khai thác khoáng sản.", "Bãi biển, di sản, hang động và giá trị văn hoá - lịch sử.", "Núi lửa hoạt động."], answer: 2 },
+    { type: 'mcq', text: "Hoạt động làm tăng giá trị nông sản ở Tây Nguyên là:", options: ["Bán nguyên liệu thô.", "Bỏ chế biến.", "Giảm chất lượng.", "Chế biến sâu và xây dựng thương hiệu."], answer: 3 },
+    { type: 'mcq', text: "Vì sao Đồng bằng sông Cửu Long cần chuyển đổi mô hình sản xuất?", options: ["Để thích ứng biến đổi khí hậu và nhu cầu thị trường.", "Vì không có đất.", "Vì hoàn toàn thiếu lao động.", "Vì không có sông."], answer: 0 },
+
+    // ===== PHẦN 2: 4 câu Đúng/Sai =====
+    { type: 'tf', text: "Câu 1. Về vị trí biên giới của các vùng:", options: [
+        { text: "a) (Nhận biết) Trung du và miền núi Bắc Bộ có biên giới với Trung Quốc và Lào.", answer: true },
+        { text: "b) (Thông hiểu) Tây Nguyên có biên giới với Lào và Cam-pu-chia.", answer: true },
+        { text: "c) (Vận dụng) Vị trí giáp biên giới tạo điều kiện phát triển kinh tế cửa khẩu.", answer: true },
+        { text: "d) (Vận dụng cao) Tây Nguyên có đường bờ biển dài, thuận lợi phát triển kinh tế biển.", answer: false }
+    ]},
+    { type: 'tf', text: "Câu 2. Về Trung du và miền núi Bắc Bộ:", options: [
+        { text: "a) (Nhận biết) Tiểu vùng Đông Bắc có bể than lớn ở Quảng Ninh.", answer: true },
+        { text: "b) (Thông hiểu) Tiểu vùng Tây Bắc nổi bật về tiềm năng thuỷ điện.", answer: true },
+        { text: "c) (Vận dụng) Vùng thuận lợi chăn nuôi trâu, bò nhờ nhiều đồng cỏ trên đồi núi.", answer: true },
+        { text: "d) (Vận dụng cao) Địa hình Tây Bắc thấp và bằng phẳng hơn Đông Bắc.", answer: false }
+    ]},
+    { type: 'tf', text: "Câu 3. Về Bắc Trung Bộ và Duyên hải Nam Trung Bộ:", options: [
+        { text: "a) (Nhận biết) Hai vùng đều có thế mạnh về du lịch biển và di sản.", answer: true },
+        { text: "b) (Thông hiểu) Đồng bằng ở hai vùng nhỏ hẹp, đất nhìn chung kém màu mỡ.", answer: true },
+        { text: "c) (Vận dụng) Bão, lũ và hạn hán là những khó khăn chung của hai vùng.", answer: true },
+        { text: "d) (Vận dụng cao) Hai vùng có đồng bằng châu thổ rộng lớn tương đương Đồng bằng sông Cửu Long.", answer: false }
+    ]},
+    { type: 'tf', text: "Câu 4. Cho bảng số liệu giả định về ba vùng X, Y, Z: Vùng X có diện tích 30 nghìn km², dân số 15 triệu người. Vùng Y có diện tích 60 nghìn km², dân số 12 triệu người. Vùng Z có diện tích 50 nghìn km², dân số 5 triệu người. Nhận định sau đúng hay sai?", options: [
+        { text: "a) (Nhận biết) Vùng X có mật độ dân số cao nhất trong ba vùng.", answer: true },
+        { text: "b) (Thông hiểu) Mật độ dân số của vùng Y là 200 người/km².", answer: true },
+        { text: "c) (Vận dụng) Mật độ dân số của vùng X gấp 5 lần vùng Z.", answer: true },
+        { text: "d) (Vận dụng cao) Tổng dân số của ba vùng là 40 triệu người.", answer: false }
+    ]}
+];
+
+// Đề số 15: 18 câu MCQ + 4 câu T/F
+dataMocktest[15] = [
+    // ===== PHẦN 1: 18 câu trắc nghiệm =====
+    { type: 'mcq', text: "Thềm lục địa của nước ta là:", options: ["Vùng biển rộng 12 hải lí tính từ đường cơ sở.", "Phần đáy biển và lòng đất dưới đáy biển kéo dài từ lục địa ra ngoài lãnh hải.", "Vùng nước phía trong đường cơ sở.", "Vùng biển rộng 24 hải lí."], answer: 1 },
+    { type: 'mcq', text: "Luật Biển Việt Nam được Quốc hội thông qua vào năm:", options: ["1995.", "2000.", "2012.", "2020."], answer: 2 },
+    { type: 'mcq', text: "Rạn san hô ở nước ta tập trung nhiều ở:", options: ["Vùng biển Nam Trung Bộ và các quần đảo ngoài khơi.", "Cửa sông đục phù sa Đồng bằng sông Hồng.", "Vùng núi cao.", "Vịnh Bắc Bộ gần cửa sông lớn."], answer: 0 },
+    { type: 'mcq', text: "Hoạt động nào sau đây thuộc ngành kinh tế biển?", options: ["Trồng lúa nước.", "Chăn nuôi gia cầm nội địa.", "Khai thác dầu khí, làm muối, đóng tàu và du lịch biển.", "Trồng chè."], answer: 2 },
+    { type: 'mcq', text: "Nghề làm muối ở nước ta thuận lợi nhất ở vùng ven biển:", options: ["Vùng cửa sông nhiều mưa.", "Đồng bằng ven biển mưa quanh năm.", "Vùng núi ven biển.", "Duyên hải Nam Trung Bộ (Cà Ná, Sa Huỳnh)."], answer: 3 },
+    { type: 'mcq', text: "Biện pháp bảo vệ nguồn lợi thuỷ sản là:", options: ["Đánh bắt bằng chất nổ.", "Quy định mùa vụ, cấm đánh bắt huỷ diệt và bảo vệ rạn san hô.", "Khai thác tối đa.", "Xả thải trực tiếp ra biển."], answer: 1 },
+    { type: 'mcq', text: "Chuyển dịch cơ cấu thành phần kinh tế ở nước ta thể hiện vai trò ngày càng quan trọng của:", options: ["Chỉ khu vực Nhà nước.", "Chỉ kinh tế tự cung tự cấp.", "Khu vực ngoài Nhà nước và có vốn đầu tư nước ngoài.", "Chỉ kinh tế tập thể."], answer: 2 },
+    { type: 'mcq', text: "Cơ cấu kinh tế theo lãnh thổ của nước ta chuyển dịch theo hướng:", options: ["Hình thành các vùng kinh tế trọng điểm, khu công nghiệp, khu kinh tế.", "Giảm số lượng vùng kinh tế.", "Xoá bỏ liên kết vùng.", "Chỉ phát triển một vùng."], answer: 0 },
+    { type: 'mcq', text: "Hội nhập kinh tế quốc tế đòi hỏi nước ta phải:", options: ["Đóng cửa thị trường.", "Giảm chất lượng sản phẩm.", "Tăng bảo hộ vô điều kiện.", "Nâng cao năng lực cạnh tranh và hoàn thiện thể chế."], answer: 3 },
+    { type: 'mcq', text: "Việt Nam trở thành thành viên của APEC vào năm:", options: ["1995.", "1998.", "2007.", "2015."], answer: 1 },
+    { type: 'mcq', text: "Công cuộc Đổi mới của nước ta bắt đầu từ năm:", options: ["1975.", "1991.", "2000.", "1986."], answer: 3 },
+    { type: 'mcq', text: "Công nghiệp xanh nhằm mục tiêu:", options: ["Tăng phát thải.", "Tăng khai thác tài nguyên bừa bãi.", "Giảm hiệu quả sản xuất.", "Giảm phát thải, tiết kiệm tài nguyên và bảo vệ môi trường."], answer: 3 },
+    { type: 'mcq', text: "Biện pháp nâng cao sức cạnh tranh của nông sản xuất khẩu là:", options: ["Đạt tiêu chuẩn chất lượng, truy xuất nguồn gốc và xây dựng thương hiệu.", "Giảm chất lượng sản phẩm.", "Bỏ kiểm dịch.", "Chỉ bán sản phẩm thô."], answer: 0 },
+    { type: 'mcq', text: "Thích ứng với biến đổi khí hậu ở đồng bằng ven biển cần:", options: ["Phá rừng ngập mặn.", "Xây công trình thuỷ lợi, đê điều và trồng rừng ngập mặn.", "Bỏ đê điều.", "Xây nhà sát mép nước."], answer: 1 },
+    { type: 'mcq', text: "Hệ thống bảo vệ đa dạng sinh học ở nước ta gồm:", options: ["Vườn quốc gia, khu bảo tồn thiên nhiên.", "Khu công nghiệp nặng.", "Khu đô thị mới.", "Cảng biển."], answer: 0 },
+    { type: 'mcq', text: "Vai trò quan trọng nhất của giáo dục - đào tạo đối với phát triển kinh tế là:", options: ["Giảm năng suất lao động.", "Hạn chế đổi mới.", "Nâng cao chất lượng nguồn nhân lực.", "Giảm việc làm."], answer: 2 },
+    { type: 'mcq', text: "Đô thị hoá bền vững cần gắn với:", options: ["Quy hoạch hợp lí, hạ tầng đồng bộ, bảo vệ môi trường và an sinh xã hội.", "Mở rộng tự phát.", "Bỏ không gian xanh.", "Dồn dân vào trung tâm."], answer: 0 },
+    { type: 'mcq', text: "Các nguồn năng lượng sạch gồm:", options: ["Than đá, dầu mỏ.", "Củi đốt, than củi.", "Điện gió, điện mặt trời và thuỷ điện.", "Khí thải công nghiệp."], answer: 2 },
+
+    // ===== PHẦN 2: 4 câu Đúng/Sai =====
+    { type: 'tf', text: "Câu 1. Về biển, đảo và kinh tế biển:", options: [
+        { text: "a) (Nhận biết) Làm muối, đóng tàu, du lịch biển và khai thác dầu khí là các ngành kinh tế biển.", answer: true },
+        { text: "b) (Thông hiểu) Rạn san hô tập trung nhiều ở vùng biển Nam Trung Bộ và các đảo, quần đảo ngoài khơi.", answer: true },
+        { text: "c) (Vận dụng) Quy định mùa vụ và cấm đánh bắt huỷ diệt giúp bảo vệ nguồn lợi hải sản.", answer: true },
+        { text: "d) (Vận dụng cao) Bảo vệ môi trường biển là việc của các nước khác, nước ta chỉ cần khai thác.", answer: false }
+    ]},
+    { type: 'tf', text: "Câu 2. Về Đổi mới và hội nhập kinh tế quốc tế:", options: [
+        { text: "a) (Nhận biết) Công cuộc Đổi mới của nước ta bắt đầu từ năm 1986.", answer: true },
+        { text: "b) (Thông hiểu) Việt Nam là thành viên của APEC từ năm 1998.", answer: true },
+        { text: "c) (Vận dụng) Hội nhập đòi hỏi cải cách thể chế và nâng cao năng lực cạnh tranh.", answer: true },
+        { text: "d) (Vận dụng cao) Hội nhập quốc tế làm cho khu vực kinh tế trong nước không còn vai trò gì.", answer: false }
+    ]},
+    { type: 'tf', text: "Câu 3. Về phát triển bền vững:", options: [
+        { text: "a) (Nhận biết) Công nghiệp xanh hướng tới giảm phát thải và tiết kiệm tài nguyên.", answer: true },
+        { text: "b) (Thông hiểu) Vườn quốc gia và khu bảo tồn thiên nhiên góp phần bảo vệ đa dạng sinh học.", answer: true },
+        { text: "c) (Vận dụng) Đô thị hoá bền vững cần gắn với quy hoạch, hạ tầng và bảo vệ môi trường.", answer: true },
+        { text: "d) (Vận dụng cao) Có thể ưu tiên tăng trưởng nhanh và bỏ qua các tiêu chuẩn môi trường.", answer: false }
+    ]},
+    { type: 'tf', text: "Câu 4. Cho bảng số liệu giả định về cơ cấu lao động của một nước (%): Năm 2010: nông - lâm - thuỷ sản 50; công nghiệp - xây dựng 22; dịch vụ 28. Năm 2022: nông - lâm - thuỷ sản 30; công nghiệp - xây dựng 32; dịch vụ 38. Nhận định sau đúng hay sai?", options: [
+        { text: "a) (Nhận biết) Tỉ trọng lao động nông - lâm - thuỷ sản năm 2022 thấp hơn năm 2010.", answer: true },
+        { text: "b) (Thông hiểu) Tỉ trọng lao động dịch vụ tăng 10 điểm phần trăm trong giai đoạn 2010 - 2022.", answer: true },
+        { text: "c) (Vận dụng) Tỉ trọng lao động công nghiệp - xây dựng tăng 10 điểm phần trăm trong giai đoạn 2010 - 2022.", answer: true },
+        { text: "d) (Vận dụng cao) Tỉ trọng lao động nông - lâm - thuỷ sản giảm 30 điểm phần trăm trong giai đoạn 2010 - 2022.", answer: false }
+    ]}
+];
