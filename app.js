@@ -45,6 +45,13 @@ if (typeof dataExtra !== 'undefined') {
     if (typeof dataMocktestNew !== 'undefined') {
         Object.keys(dataMocktestNew).forEach(id => { merged[id] = dataMocktestNew[id]; });
     }
+    // Các đề đã chuyển sang cấu trúc 3 phần 2026 (ưu tiên cao nhất)
+    if (typeof dataMocktestConverted !== 'undefined') {
+        Object.keys(dataMocktestConverted).forEach(id => {
+            merged[id] = dataMocktestConverted[id].questions;
+            appDatabase.mocktestMeta[id] = dataMocktestConverted[id].label;
+        });
+    }
     Object.keys(merged).sort((a, b) => a - b).forEach(id => {
         const arr = merged[id];
         if (!Array.isArray(arr) || arr.length === 0) return;
@@ -194,7 +201,7 @@ function renderQuestions(qs) {
         }
         const rows = q.options.map((o, j) => `
             <div class="flex flex-col md:flex-row md:flex-wrap md:items-center gap-2 p-3 border border-gray-200 rounded-lg" id="opt-${i}-${j}">
-                <div class="flex-grow">${esc(o.text)}</div>
+                <div class="flex-grow">${esc(/^[a-d]\)/.test(o.text) ? o.text : 'abcd'[j] + ') ' + o.text)}</div>
                 <div class="flex gap-2 flex-shrink-0">
                     <label class="option-label px-4 py-1.5 border border-gray-200 rounded-md"><input type="radio" name="q${i}_${j}" value="true" class="accent-emerald-600"> <span>Đúng</span></label>
                     <label class="option-label px-4 py-1.5 border border-gray-200 rounded-md"><input type="radio" name="q${i}_${j}" value="false" class="accent-emerald-600"> <span>Sai</span></label>
@@ -235,10 +242,23 @@ function niceTop(max) {
 }
 
 function chartSVG(spec) {
-    const W = 640, H = 340, m = { l: 62, r: 18, t: 26, b: 62 };
-    const pw = W - m.l - m.r, ph = H - m.t - m.b;
     const cats = spec.categories || [], series = spec.series || [], n = cats.length;
     if (!n || !series.length) return '';
+    // Tên cột dài tự xuống dòng; dành thêm chỗ ở đáy và đỉnh biểu đồ
+    const W = 640, plotW = W - 62 - 18, maxChars = Math.max(6, Math.floor((plotW / n) / 6.6));
+    const wrap = (str) => {
+        const words = String(str).split(' '), lines = [];
+        let cur = '';
+        words.forEach(w => {
+            if (cur && (cur + ' ' + w).length > maxChars) { lines.push(cur); cur = w; }
+            else cur = cur ? cur + ' ' + w : w;
+        });
+        if (cur) lines.push(cur);
+        return lines;
+    };
+    const catLines = cats.map(wrap), extra = 14 * (Math.max(...catLines.map(l => l.length)) - 1);
+    const H = 348 + extra, m = { l: 62, r: 18, t: 34, b: 62 + extra };
+    const pw = W - m.l - m.r, ph = H - m.t - m.b;
     const kind = spec.kind || 'bar';
     let maxV = 0;
     if (kind === 'stacked') cats.forEach((_, i) => { maxV = Math.max(maxV, series.reduce((a, s) => a + s.values[i], 0)); });
@@ -255,7 +275,9 @@ function chartSVG(spec) {
     g += `<line x1="${m.l}" x2="${W - m.r}" y1="${y(0)}" y2="${y(0)}" stroke="#9ca3af"/>`;
 
     cats.forEach((c, i) => {
-        g += `<text x="${m.l + gw * i + gw / 2}" y="${H - m.b + 18}" text-anchor="middle" font-size="12" fill="#374151">${esc(c)}</text>`;
+        const cx = m.l + gw * i + gw / 2;
+        g += `<text x="${cx}" y="${H - m.b + 18}" text-anchor="middle" font-size="12" fill="#374151">` +
+             catLines[i].map((ln, k) => `<tspan x="${cx}" dy="${k === 0 ? 0 : 14}">${esc(ln)}</tspan>`).join('') + `</text>`;
     });
 
     if (kind === 'bar') {
