@@ -1,3 +1,6 @@
+/* Bảo vệ: nếu phần Chủ đề 1-2 (khai báo dataKhoi11) chưa được nạp thì tạo đối tượng rỗng, tránh ReferenceError làm hỏng cả file */
+if (typeof dataKhoi11 === 'undefined') { window.dataKhoi11 = {}; }
+
 /* --- GỘP BỔ SUNG CHỦ ĐỀ 3 TỪ DATA_EXTRA.JS --- */
 dataKhoi11[3] = {
     title: "Chủ đề 3: Địa lí Khu vực và Quốc gia (Tây Nam Á & EU)",

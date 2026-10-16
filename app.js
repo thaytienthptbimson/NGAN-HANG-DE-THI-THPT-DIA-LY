@@ -35,7 +35,7 @@ let secondsLeft = MOCK_SECONDS;
 let secondsElapsed = 0;
 
 const $ = (id) => document.getElementById(id);
-const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 
 const TAB_ACTIVE = 'px-5 py-2 bg-gray-50 text-emerald-800 font-bold rounded-md shadow-sm text-sm transition-colors';
 const TAB_IDLE = 'px-5 py-2 bg-white/20 hover:bg-white/90 hover:text-emerald-800 font-semibold rounded-md text-sm transition-colors';
@@ -338,7 +338,7 @@ function submitTest(force = false) {
         } else if (q.type === 'sa') {
             max += 0.25;
             const inp = $(`sa-${i}`);
-            const raw = inp.value.trim().replace(',', '.');
+            const raw = inp.value.trim().replace(/\s+/g, '').replace(',', '.');
             const v = parseFloat(raw);
             const good = raw !== '' && !isNaN(v) && Math.abs(v - q.answer) <= (q.tol != null ? q.tol : 1e-4);
             if (good) earned += 0.25;

@@ -1,3 +1,6 @@
+/* Bảo vệ: nếu phần Chủ đề 1-2 (khai báo dataKhoi12) chưa được nạp thì tạo đối tượng rỗng, tránh ReferenceError làm hỏng cả file */
+if (typeof dataKhoi12 === 'undefined') { window.dataKhoi12 = {}; }
+
 /* --- GỘP BỔ SUNG CHỦ ĐỀ 3, 4, 5 TỪ DATA_EXTRA.JS --- */
 Object.assign(dataKhoi12, {
     3: {
