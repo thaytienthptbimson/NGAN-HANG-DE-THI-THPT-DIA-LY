@@ -20,12 +20,10 @@
         .wrong-ans-text { color: #991b1b !important; }
         .custom-scrollbar::-webkit-scrollbar { width: 6px; }
         .custom-scrollbar::-webkit-scrollbar-thumb { background: #6ee7b7; border-radius: 10px; }
-        /* Tông màu xanh lá phù hợp môn Địa Lí */
         .glass-header { background: linear-gradient(90deg, #064e3b 0%, #059669 50%, #064e3b 100%); box-shadow: 0 2px 10px rgba(0,0,0,0.15); }
     </style>
 </head>
 <body class="min-h-screen flex flex-col text-gray-800">
-    <!-- Header -->
     <header class="glass-header text-white sticky top-0 z-40 h-[64px] flex items-center">
         <div class="max-w-[1500px] w-full mx-auto px-4 flex justify-between items-center">
             <div class="flex space-x-2">
@@ -44,9 +42,7 @@
         </div>
     </header>
 
-    <!-- Main Content Layout -->
     <div class="max-w-[1500px] mx-auto w-full flex-grow flex flex-col lg:flex-row p-4 gap-6 items-start mt-4 mb-8">
-        <!-- Sidebar -->
         <aside class="w-full lg:w-[320px] flex-shrink-0 bg-white rounded-2xl shadow-sm border border-gray-200 lg:sticky lg:top-[85px] z-20 overflow-hidden">
             <div class="bg-emerald-50/80 p-4 border-b border-gray-200 flex items-center gap-2">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-emerald-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -57,9 +53,7 @@
             <div id="sidebar-container" class="max-h-[30vh] lg:max-h-[calc(100vh-200px)] overflow-y-auto custom-scrollbar bg-gray-50/30 p-2"></div>
         </aside>
 
-        <!-- Main Workspace -->
         <main class="w-full flex-grow min-w-0 bg-white rounded-2xl shadow-sm border border-gray-200 p-5 md:p-8 relative">
-            <!-- Welcome Screen -->
             <div id="welcome-screen" class="text-center py-20 flex flex-col items-center justify-center h-full">
                 <div class="bg-emerald-50 p-6 rounded-full mb-6">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 text-emerald-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -69,14 +63,10 @@
                 <h2 class="text-2xl md:text-3xl font-bold text-gray-800 mb-3">Hệ thống Luyện thi Tốt nghiệp THPT môn Địa Lí</h2>
                 <p class="text-gray-600 font-medium text-base mb-4 max-w-lg">Phần mềm cung cấp 3 dạng bài tập bám sát cấu trúc đề thi mới nhất: Trắc nghiệm nhiều lựa chọn, Đúng/Sai và Trả lời ngắn (có biểu đồ, bảng số liệu).</p>
                 <div class="inline-flex items-center gap-2 bg-emerald-50 text-emerald-700 px-4 py-2 rounded-lg text-sm font-medium border border-emerald-100">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-8.707l-3-3a1 1 0 00-1.414 1.414L10.586 9H7a1 1 0 100 2h3.586l-1.293 1.293a1 1 0 101.414 1.414l3-3a1 1 0 000-1.414z" clip-rule="evenodd" />
-                    </svg>
                     Vui lòng chọn khối lớp hoặc đề thi thử ở menu bên trái để bắt đầu.
                 </div>
             </div>
 
-            <!-- Test Screen -->
             <div id="test-screen" class="hidden-element">
                 <div class="border-b border-gray-200 pb-4 mb-6 flex flex-col md:flex-row justify-between items-start md:items-end gap-2">
                     <div>
@@ -92,21 +82,12 @@
                 <div id="questions-container" class="space-y-8"></div>
                 <div class="mt-10 pt-8 border-t border-gray-200 flex justify-center">
                     <button onclick="submitTest()" id="submit-btn" class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 px-12 text-lg rounded-xl shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition-all flex items-center gap-2">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-                        </svg>
                         NỘP BÀI & XEM ĐIỂM
                     </button>
                 </div>
             </div>
 
-            <!-- Result Screen -->
             <div id="result-screen" class="hidden-element text-center py-10">
-                <div class="inline-block bg-green-100 p-4 rounded-full mb-4">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                    </svg>
-                </div>
                 <h2 class="text-3xl md:text-4xl font-black text-green-600 mb-2">Hoàn thành bài thi!</h2>
                 <div class="bg-gradient-to-b from-emerald-50 to-white border border-emerald-100 rounded-3xl p-8 max-w-2xl mx-auto my-8 shadow-lg">
                     <p class="text-gray-600 text-lg font-medium mb-2">Điểm số của bạn</p>
@@ -120,27 +101,20 @@
         </main>
     </div>
 
-    <!-- Footer Copyright -->
     <footer class="mt-auto bg-white border-t border-gray-200 py-5">
         <div class="max-w-[1500px] mx-auto px-4 text-center">
-            <p class="text-sm md:text-base font-semibold text-gray-700 flex items-center justify-center gap-2">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-emerald-600" viewBox="0 0 20 20" fill="currentColor">
-                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm0-2a6 6 0 100-12 6 6 0 000 12zm0-9a1 1 0 011 1v3.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 111.414-1.414L9 11.586V8a1 1 0 011-1z" clip-rule="evenodd" />
-                </svg>
+            <p class="text-sm md:text-base font-semibold text-gray-700">
                 Bản quyền thuộc về thầy Phạm Văn Tiến - GV Tiếng Anh Trường THPT Bỉm Sơn
             </p>
         </div>
     </footer>
 
-    <!-- NẠP DỮ LIỆU CÁC KHỐI -->
+    <!-- NẠP 4 FILE DỮ LIỆU CƠ BẢN -->
     <script src="data_khoi10.js"></script>
     <script src="data_khoi11.js"></script>
     <script src="data_khoi12.js"></script>
-    <script src="data_extra.js"></script>
-    <script src="data_mocktest_2026.js"></script>
-    <script src="data_mocktest_converted.js"></script>
-    
-    <!-- FILE XỬ LÝ LOGIC CHÍNH -->
+    <script src="data_mocktest.js"></script>
+    <!-- LOGIC CHÍNH -->
     <script src="app.js"></script>
 </body>
 </html>
